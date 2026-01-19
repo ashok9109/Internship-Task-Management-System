@@ -8,7 +8,6 @@ const App = () => {
 
   const dispatch = useDispatch();
   
-
   useEffect(()=>{
     const fetchingUser = async()=>{
       try {

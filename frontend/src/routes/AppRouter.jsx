@@ -5,7 +5,7 @@ import HomeLayout from '../Layouts/HomeLayout'
 import Dashboard from '../pages/Dashboard'
 import MyCourses from '../pages/MyCourses'
 import MyInternship from '../pages/MyInternship'
-
+import AdminDashboard from '../pages/AdminDashboard'
 
 const AppRouter = () => {
     const router = createBrowserRouter([
@@ -23,16 +23,24 @@ const AppRouter = () => {
                     children: [
                         {
                             path: "",
-                            element: <Dashboard/>
+                            element: <Dashboard />
                         },
                         {
-                            path:'my-courses',
-                            element:<MyCourses/>
+                            path: "admin-dashoard",
+                            element: <AdminDashboard />
                         },
                         {
-                            path:'my-internship',
-                            element:<MyInternship/>
-                        }
+                            path: 'my-courses',
+                            element: <MyCourses />
+                        },
+                        {
+                            path: 'my-internship',
+                            element: <MyInternship />
+                        },
+                        {
+                            path: "admin-dashoard",
+                            element: <AdminDashboard />
+                        },
                     ]
                 }
             ]
