@@ -2,7 +2,7 @@ import React from 'react'
 
 const AdminDashboard = () => {
   return (
-    <div>AdminDashboard</div>
+    <div className='bg-[#1A2546] h-full w-full ' >AdminDashboard</div>
   )
 }
 

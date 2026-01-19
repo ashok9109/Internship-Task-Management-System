@@ -6,6 +6,7 @@ import Dashboard from '../pages/Dashboard'
 import MyCourses from '../pages/MyCourses'
 import MyInternship from '../pages/MyInternship'
 import AdminDashboard from '../pages/AdminDashboard'
+import SpecialOffer from '../pages/SpecialOffer'
 
 const AppRouter = () => {
     const router = createBrowserRouter([
@@ -24,6 +25,10 @@ const AppRouter = () => {
                         {
                             path: "",
                             element: <Dashboard />
+                        },
+                        {
+                            path:"special-offer",
+                            element:<SpecialOffer/>
                         },
                         {
                             path: "admin-dashoard",

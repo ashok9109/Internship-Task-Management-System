@@ -9,7 +9,7 @@ const HomeLayout = () => {
 
   return (
     <>
-      <section className='h-screen w-screen' >
+      <section className='min-h-screen w-full ' >
 
         {/* This is mobile menu */}
         <header className='flex items-center justify-evenly gap-10 px-2 bg-slate-900 py-2 md:hidden ' >
@@ -31,7 +31,7 @@ const HomeLayout = () => {
         </aside>
 
         {/* This is right page */}
-        <div className='w-full' >
+        <div className='min-h-screen w-full' >
           <Outlet />
         </div>
       </div>

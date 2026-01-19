@@ -1,4 +1,4 @@
-import { Album, BackpackIcon, BookCheck, Home, icons } from "lucide-react";
+import { Album, BackpackIcon, BookCheck, Crown, Home} from "lucide-react";
 import { NavLink as RouterNavLink, useLocation, useNavigate, } from "react-router";
 import { useDispatch } from 'react-redux';
 import logo from '../../images/hd-logo.png';
@@ -12,6 +12,7 @@ import { toast } from "react-toastify";
 // ===================
 const navlink = [
   { label: "Dashboard", icon: Home, to: "/home" },
+  {label:"Special Offer", icon:Crown, to:"/home/special-offer"},
   { label: "My Courses", icon: BookCheck, to: "/home/my-courses" },
   { label: "My Internship", icon: Album, to: "/home/my-internship" },
   { label: "Admin Dashboard", icon: BackpackIcon, to: "/home/admin-dashoard" },
@@ -48,7 +49,7 @@ const NavLink = () => {
   return (
     <>
       {/* Navigation Section */}
-      <section className='h-full w-full p-10 flex flex-col items-center space-y-5 ' >
+      <section className='h-full w-full p-10 flex flex-col items-center space-y-5 bg-slate-900 ' >
 
         {/* company logo */}
         <div className='h-[70px] w-[200px] mb-5' >
@@ -63,9 +64,9 @@ const NavLink = () => {
                 key={label}
                 to={to}
               >
-                <div className='flex gap-2 hover:scale-[1.2] transition hover:bg-' >
-                  <Icon className="text-[#424242]" />
-                  <span className="text-[#05AFF1]" >{label}</span>
+                <div className='flex gap-2 hover:scale-[1.1] transition ' >
+                  <Icon className="text-[#424242] " />
+                  <span className="text-[#05AFF1] " >{label}</span>
                 </div>
               </RouterNavLink>
             )
