@@ -7,36 +7,64 @@
 
 @font-face {
     font-family: font1;
-    src: url(./fonts/3XFtErw3860rsdSUVZx78hP2QtzZ.woff2) format("woff2");
-    font-display: swap;
+    src: url(../public/fonts/3XFtErw3860rsdSUVZx78hP2QtzZ.woff2);
 }
 
 @font-face {
     font-family: font2;
-    src: url(./fonts/bootstrap-icons.woff2);
+    src: url(../public/fonts/bootstrap-icons.woff2);
 }
 
 @font-face {
     font-family: font3;
-    src: url(./fonts/flaticon_mycollection.woff2);
+    src: url(../public/fonts/flaticon_mycollection.woff2);
 }
 
 @font-face {
     font-family: font4;
-    src: url(./fonts/nuFkD-vYSZviVYUb_rj3ij__anPXDTnogkk7.woff2);
+    src: url(../public/fonts/nuFkD-vYSZviVYUb_rj3ij__anPXDTnogkk7.woff2);
 }
 
 @font-face {
     font-family: font5;
-    src: url(./fonts/t5sJIQcYNIWbFgDgAAzZ34auoVyXkJCOvp3SFWJbN5hF8Ju1x6sKCyp0l9sI40swNJwInycYAJzz0m7kJ4qFQOJBOjLvDSndo0SKMpKSTzwliVdHAy4bxTDHg_ugnAakp8ub-cxgUg.woff2);
+    src: url(../public/fonts/t5sJIQcYNIWbFgDgAAzZ34auoVyXkJCOvp3SFWJbN5hF8Ju1x6sKCyp0l9sI40swNJwInycYAJzz0m7kJ4qFQOJBOjLvDSndo0SKMpKSTzwliVdHAy4bxTDHg_ugnAakp8ub-cxgUg.woff2);
 }
 
 @font-face {
     font-family: font6;
-    src: url(./fonts/t5svIQcYNIWbFgDgAAzZ34auoVyXkJCOvp3SFWJbN5hF8Ju1x6sKCyp0l9sI40swNJwGpVd4AZzz0v6lJ4qFXNZhGjLvDSkV4W6GGn8.woff2);
+    src: url(../public/fonts/t5svIQcYNIWbFgDgAAzZ34auoVyXkJCOvp3SFWJbN5hF8Ju1x6sKCyp0l9sI40swNJwGpVd4AZzz0v6lJ4qFXNZhGjLvDSkV4W6GGn8.woff2);
 }
 
 @font-face {
     font-family: font7;
-    src: url(./fonts/xn7gYHE41ni1AdIRggexSg.woff2);
+    src: url(../public/fonts/xn7gYHE41ni1AdIRggexSg.woff2);
+}
+
+
+.font1{
+    font-family: font1;
+}
+
+.font2{
+    font-family: font2;
+}
+
+.font3{
+    font-family: font3;
+}
+
+.font4{
+    font-family: font4;
+}
+
+.font5{
+    font-family:font5;
+}
+
+.font6{
+    font-family: font6;
+}
+
+.font7{
+    font-family: fonnt7;
 }

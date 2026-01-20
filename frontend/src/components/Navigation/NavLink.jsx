@@ -5,6 +5,7 @@ import logo from '../../images/hd-logo.png';
 import { removeUser } from "../../features/reducers/authSlice";
 import { axiosintance } from "../../config/axiosintance";
 import { toast } from "react-toastify";
+import{motion} from "motion/react"
 
 
 // ===================
@@ -66,7 +67,10 @@ const NavLink = () => {
               >
                 <div className='flex gap-2 hover:scale-[1.1] transition ' >
                   <Icon className="text-[#424242] " />
-                  <span className="text-[#05AFF1] " >{label}</span>
+                  <motion.span whileHover={{background:"#04B0F0",color:"#0F172B", padding:"8px 12px", borderRadius:"10px"}}
+                  className="text-[#05AFF1]" 
+                  >
+                    {label}</motion.span>
                 </div>
               </RouterNavLink>
             )
@@ -75,7 +79,9 @@ const NavLink = () => {
 
         {/* logout button */}
         <div className="text-center mt-5" >
-          <button onClick={logouthandler} className='text-[#424242] font-bold text-2xl hover:scale-[1.1]' >Logout</button>
+          <motion.button
+          whileHover={{background:"red", color:"white", padding:"7px 14px", borderRadius:"10px" }}
+           onClick={logouthandler} className='text-[#424242] font-bold text-2xl hover:scale-[1.1]' >Logout</motion.button>
         </div>
       </section>
     </>
