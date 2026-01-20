@@ -9,7 +9,7 @@ import { useState } from 'react';
 const Register = ({ setToggle }) => {
 
     const dispatch = useDispatch();
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors }, reset } = useForm();
     const [loading, setLoading] = useState(false);
 
     // ========================
@@ -33,6 +33,7 @@ const Register = ({ setToggle }) => {
             });
         } finally {
             setLoading(false);
+            reset();
         }
     }
 

@@ -63,15 +63,16 @@ const NavLink = () => {
               <RouterNavLink
                 key={label}
                 to={to}
+                className={({ isActive }) => `${to === location.pathname ? "text-[#0F172B] bg-[#04B0F0] rounded px-[35px] py-[4px] " : "text-[#04B0F0]"}`}
               >
-                <div
-                  className='flex gap-2 hover:scale-[1.1] transition' >
+                <motion.div whileHover={{ background: "#04B0F0", color: "#0F172B", padding: "4px 35px", borderRadius: "10px" }}
+                  className='flex  gap-4 hover:scale-[1.1] transition space-y-5' >
                   <Icon className="text-[#424242] " />
-                  <motion.span whileHover={{ background: "#04B0F0", color: "#0F172B", padding: "8px 12px", borderRadius: "10px" }}
-                    className="text-[#05AFF1]"
+                  <motion.span whileHover={{ color: "#0F172B" }}
+                    className=""
                   >
                     {label}</motion.span>
-                </div>
+                </motion.div>
               </RouterNavLink>
             )
           })}
