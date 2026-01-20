@@ -1,31 +1,44 @@
- #🔐 Authentication System
+# Upstare Research (Intern Task Management System)
 
-This project implements a complete and secure authentication module using React.js Node.js, Express, MongoDB, and JWT.performance optimization, and deployment.
+## 📌 Project Overview
+The **Intern Task Management System** is a web-based application designed to efficiently manage interns and their assigned tasks. The system helps organizations assign tasks, track progress, and monitor intern performance in a structured and transparent way.
+
+---
+
+## 🎯 Purpose of the Project
+This project was developed as part of an **internship task** to improve task allocation, tracking, and workflow management for interns within a company.
 
 ---
 
 ## 🚀 Features
+- Intern registration and management  
+- Task creation and assignment by admin  
+- Task status tracking (Pending / In Progress / Completed)  
+- Centralized dashboard for monitoring intern tasks  
+- User-friendly and responsive interface  
+- Secure and structured workflow  
 
-✨ Features
-
- - User Registration & Login
- - Password hashing with bcrypt
- - JWT-based authentication & authorization
- - Protected routes and middleware
- - Role-based access control (User, Admin, etc.)
- - Default role assignment at schema level
- - Input validation and centralized error handling
- - Production-level folder structure
+---
 
 ## 🛠️ Tech Stack
+- **Frontend:** React.js 
+- **Backend:** Node.js, Express.js
+- **Database:** MongoDB   
+- **Styling:** Tailwind CSS  
+- **Version Control:** Git & GitHub  
 
-**Frontend:** React.js, Tailwind CSS
-**Backend** Node.js, Express.js, MongoDb, JWT, Bcrypt
-**Tools:** Git, GitHub, VS Code
+*(Update this section based on your actual stack)*
 
-## ⚙️ Installation & Setup
+---
 
-```bash
-git clone https://github.com/ashok9109/Authentication-System.git
-cd Authentication-System
-open index.html
+## 🧑‍💻 User Roles
+### Admin
+- Add and manage interns  
+- Create and assign tasks  
+- Monitor task progress  
+
+### Intern
+- View assigned tasks  
+- Update task status  
+- Track personal task progress  
+
