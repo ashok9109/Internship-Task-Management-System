@@ -1,11 +1,11 @@
-import { Album, BackpackIcon, BookCheck, Crown, Home} from "lucide-react";
+import { Album, BackpackIcon, BookCheck, Crown, Home } from "lucide-react";
 import { NavLink as RouterNavLink, useLocation, useNavigate, } from "react-router";
 import { useDispatch } from 'react-redux';
 import logo from '../../images/hd-logo.png';
 import { removeUser } from "../../features/reducers/authSlice";
 import { axiosintance } from "../../config/axiosintance";
 import { toast } from "react-toastify";
-import{motion} from "motion/react"
+import { motion } from "motion/react"
 
 
 // ===================
@@ -13,7 +13,7 @@ import{motion} from "motion/react"
 // ===================
 const navlink = [
   { label: "Dashboard", icon: Home, to: "/home" },
-  {label:"Special Offer", icon:Crown, to:"/home/special-offer"},
+  { label: "Special Offer", icon: Crown, to: "/home/special-offer" },
   { label: "My Courses", icon: BookCheck, to: "/home/my-courses" },
   { label: "My Internship", icon: Album, to: "/home/my-internship" },
   { label: "Admin Dashboard", icon: BackpackIcon, to: "/home/admin-dashoard" },
@@ -65,10 +65,11 @@ const NavLink = () => {
                 key={label}
                 to={to}
               >
-                <div className='flex gap-2 hover:scale-[1.1] transition ' >
+                <div
+                  className='flex gap-2 hover:scale-[1.1] transition' >
                   <Icon className="text-[#424242] " />
-                  <motion.span whileHover={{background:"#04B0F0",color:"#0F172B", padding:"8px 12px", borderRadius:"10px"}}
-                  className="text-[#05AFF1]" 
+                  <motion.span whileHover={{ background: "#04B0F0", color: "#0F172B", padding: "8px 12px", borderRadius: "10px" }}
+                    className="text-[#05AFF1]"
                   >
                     {label}</motion.span>
                 </div>
@@ -80,8 +81,8 @@ const NavLink = () => {
         {/* logout button */}
         <div className="text-center mt-5" >
           <motion.button
-          whileHover={{background:"red", color:"white", padding:"7px 14px", borderRadius:"10px" }}
-           onClick={logouthandler} className='text-[#424242] font-bold text-2xl hover:scale-[1.1]' >Logout</motion.button>
+            whileHover={{ background: "red", color: "white", padding: "7px 14px", borderRadius: "10px" }}
+            onClick={logouthandler} className='text-[#424242] font-bold text-2xl hover:scale-[1.1]' >Logout</motion.button>
         </div>
       </section>
     </>
