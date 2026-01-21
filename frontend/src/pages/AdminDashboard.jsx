@@ -4,13 +4,100 @@ const AdminDashboard = () => {
   return (
     <section className='min-h-full w-full bg-[#1A2546]' >
 
-      {/* page1 code */}
-      <section className='flex flex-col space-y-3' >
-        {/* Heading */}
-        <div className='w-full max-w-5xl font-bold p-2 flex flex-col items-center justify-center gap-2' >
-          <h1 className='font-bold text-sm text-sky-500 font4 md:text-2xl'>🌐 Admin Data Management System</h1>
-          <p className='text-sm text-gray-500 font1'>Admin panel for upload task and manage task</p>
+      {/* admin panel Heading */}
+      <div className='w-full max-w-5xl font-bold p-5 flex flex-col items-center justify-center gap-2' >
+        <h1 className='font-bold text-sm text-sky-500 font4 md:text-2xl'>🌐 Admin Task Management System</h1>
+        <p className='text-sm text-gray-500 font1'>Admin panel for upload task and manage task</p>
+      </div>
+
+      {/*page1 task details uploading page */}
+      <section className='min-h-full w-full flex items-center justify-center p-4' >
+        <div className='max-w-4xl flex flex-col items-center justify-center bg-slate-900/50 rounded-sm border-2 border-sky-500 shadow-lg shadow-sky-500' >
+
+          {/* page1-heading */}
+          <div className='w-full max-w-5xl font-bold p-5 flex flex-col items-center justify-center gap-2' >
+            <h1 className='font-bold text-sm text-sky-500 font7 md:text-2xl'> Task Details Requirements</h1>
+            <p className='text-sm text-slate-400 font5'>Fill all fields in deep explaintions are required and these details showing in interns task </p>
+          </div>
+
+          {/* label and input fields */}
+          <form className='w-full p-4' >
+
+            {/* title input */}
+            <div className='w-full p-4' >
+              <label className='text-sm font-bold text-sky-500' > Task-Title </label>
+              <input className='w-full outline-0 text-white border-2 border-sky-500 border-dashed p-2'
+                placeholder='Week 1: complete web development project'
+                type="text" />
+            </div>
+
+            {/* project title & Task number */}
+            <div className='w-full flex items-center justify-between gap-5 p-4' >
+              <div className='w-full' >
+                <label className='text-sm font-bold text-sky-500' >Project-Title</label>
+                <input className='w-full outline-0 text-white border-2 border-sky-500 border-dashed p-2'
+                  placeholder='Add the project title'
+                  type="text" />
+              </div>
+
+              <div className='w-full' >
+                <label className='text-sm font-bold text-sky-500' >Task-Number</label>
+                <input className='w-full outline-0 text-white border-2 border-sky-500 border-dashed p-2'
+                  placeholder='Task-01 [Add the unique]'
+                  type="text" />
+              </div>
+            </div>
+
+            {/* theory concepts & hand of practices */}
+            <div className='w-full flex items-center justify-between gap-5 p-4' >
+              <div className='w-full' >
+                <label className='text-sm font-bold text-sky-500' >Theory Concepts</label>
+                <input className='w-full outline-0 text-white border-2 border-sky-500 border-dashed p-2'
+                  placeholder='Add the points of task'
+                  type="text" />
+              </div>
+
+              <div className='w-full' >
+                <label className='text-sm font-bold text-sky-500' >Hands-On-Practice</label>
+                <input className='w-full outline-0 text-white border-2 border-sky-500 border-dashed p-2'
+                  placeholder='Points that interns follow'
+                  type="text" />
+              </div>
+            </div>
+
+            {/* submission requirements & technical requirements */}
+            <div className='w-full flex items-center justify-between gap-5 p-4' >
+              <div className='w-full' >
+                <label className='text-sm font-bold text-sky-500' >Submission-Requirements</label>
+                <input className='w-full outline-0 text-white border-2 border-sky-500 border-dashed p-2'
+                  placeholder='Add the submission points'
+                  type="text" />
+              </div>
+
+              <div className='w-full' >
+                <label className='text-sm font-bold text-sky-500' >Technical-Requirement</label>
+                <input className='w-full outline-0 text-white border-2 border-sky-500 border-dashed p-2'
+                  placeholder='Add the task structure'
+                  type="text" />
+              </div>
+            </div>
+
+            {/* Description */}
+            <div className='w-full p-4' >
+              <label className='text-sm font-bold text-sky-500' >Description</label>
+              <textarea className='w-full outline-0 text-white border-2 border-sky-500 border-dashed p-2'
+                placeholder='Explain the task in detail'
+                rows={5} name="" id=""></textarea>
+            </div>
+
+            <button className='w-full bg-sky-500 rounded py-2 shadow-sm shadow-sky-500' type='submit' >Upload Now</button>
+          </form>
+
         </div>
+      </section>
+
+      {/* page2 code */}
+      <section className='flex flex-col space-y-3' >
 
         <div className='h-full w-full flex flex-col md:flex-row gap-20 p-4' >
 
@@ -41,14 +128,10 @@ const AdminDashboard = () => {
               </label>
               <label className='w-full border-2 flex itmes-center justify-center border-sky-500 border-dashed rounded-sm p-6' >
                 <h1 className='text-sm text-slate-500' >Drag and Drop</h1>
-                <input
-                  className='hidden'
-                  type="file" />
+                <input className='hidden'type="file" />
               </label>
 
-              <button
-                className='bg-sky-500 rounded py-2 shadow-sm shadow-sky-500'
-              >Upload Now</button>
+              <button className='bg-sky-500 rounded py-2 shadow-sm shadow-sky-500' >Upload Now</button>
             </form>
           </div>
 
@@ -68,14 +151,11 @@ const AdminDashboard = () => {
               {/* upload task number */}
               <label className='text-sm text-sky-500' > Add Task Number</label>
               <label className='w-full border-2 flex itmes-center justify-center border-sky-500 border-dashed rounded-sm p-1' >
-                <input className='w-full p-2 outline-0 text-white'
-                  type="text" placeholder='Task-01' />
+                <input className='w-full p-2 outline-0 text-white' type="text" placeholder='Task-01' />
               </label>
 
               {/* uplaod image input field */}
-              <label className=' text-sm text-sky-500' >
-                Add the task code
-              </label>
+              <label className=' text-sm text-sky-500' > Add the task code </label>
               <label className='w-full border-2 flex itmes-center justify-center border-sky-500 border-dashed rounded-sm ' >
                 <input
                   className='h-full w-full text-white p-6 outline-0'
@@ -83,19 +163,9 @@ const AdminDashboard = () => {
                   type="text" />
               </label>
 
-              <button type='submit' className='bg-sky-500 rounded py-2 shadow-sm shadow-sky-500'
-              >Upload Now</button>
+              <button type='submit' className='bg-sky-500 rounded py-2 shadow-sm shadow-sky-500' >Upload Now</button>
             </form>
           </div>
-        </div>
-      </section>
-
-      {/*page2 task details uploading */}
-      <section className='min-h-screen w-full flex items-center justify-center ' >
-
-        {/* main div */}
-        <div>
-          
         </div>
       </section>
     </section>
