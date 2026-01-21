@@ -4,7 +4,7 @@ import image from '../images/WEBSITE-DEVELOPMENT-2.png'
 const SpecialOffer = () => {
     return (
         <>
-            <section className='min-h-screen w-full bg-[#1A2546] flex items-center justify-center flex-col p-3 md:p-10 space-y-4 font1'>
+            <section className='min-h-full w-full bg-[#1A2546] flex items-center justify-center flex-col p-3 md:p-10 space-y-4 font1'>
                 <h1 className='text-white font-bold text-sm md:text-2xl font4 ' >🌐 Website Development Service</h1>
                 <p className='h-full w-full md:w-[80%] text-black font1 ' >Website Development is the complete process of designing, building, and maintaining a professional website that helps businesses grow online. It includes attractive design, smooth functionality, mobile responsiveness, security, and performance optimization to deliver the best user experience.</p>
                 <img className='h-full w-full md:h-[300px] md:w-[400px]' src={image} alt="image for offer" />

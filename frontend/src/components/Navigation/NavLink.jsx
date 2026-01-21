@@ -63,9 +63,9 @@ const NavLink = () => {
               <RouterNavLink
                 key={label}
                 to={to}
-                className={({ isActive }) => `${to === location.pathname ? "text-[#0F172B] bg-[#04B0F0] rounded px-[35px] py-[4px] " : "text-[#04B0F0]"}`}
+                className={({ isActive }) => `${to === location.pathname ? "border-b-2 border-[#04B0F0] text-[#04B0F0]" : "text-[#04B0F0]"}`}
               >
-                <motion.div whileHover={{ background: "#04B0F0", color: "#0F172B", padding: "4px 35px", borderRadius: "10px" }}
+                <motion.div whileHover={{ background: "#04B0F0", color: "#0F172B", padding: "4px 10px", borderRadius: "10px" }}
                   className='flex  gap-4 hover:scale-[1.1] transition space-y-5' >
                   <Icon className="text-[#424242] " />
                   <motion.span whileHover={{ color: "#0F172B" }}
