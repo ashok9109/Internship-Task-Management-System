@@ -5,6 +5,10 @@ const taskSchema = new mongoose.Schema({
         type: String,
     },
 
+    taskNumber:{
+        type:String
+    },
+
     theoryConcepts: {
         type: String
     },

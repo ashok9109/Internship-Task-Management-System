@@ -1,6 +1,7 @@
 import React from 'react'
 import { motion } from "motion/react"
 import { useState } from 'react'
+import { useForm } from 'react-hook-form'
 
 const AdminDashboard = () => {
 
@@ -9,7 +10,19 @@ const AdminDashboard = () => {
   const [uploadImageLoading, setUploadImageLoading] = useState(false);
   const [taskCodeLoading, setTaskCodeLoading] = useState(false);
 
+  const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
+
+  // Task details submit handler
+
+  const taskDetailsSubmit = async (data) => {
+    try {
+      console.log("this the task details", data)
+
+    } catch (error) {
+
+    }
+  }
 
 
   return (
@@ -34,15 +47,18 @@ const AdminDashboard = () => {
           </motion.div>
 
           {/* label and input fields */}
-          <form className='w-full p-4' >
+          <form onSubmit={handleSubmit(taskDetailsSubmit)} className='w-full p-4' >
 
             {/* title input */}
             <motion.div initial={{ x: -150 }} animate={{ x: 0 }}
               className='w-full p-4' >
-              <label className='text-sm font-bold text-sky-500' > Task-Title </label>
-              <input className='w-full outline-0 text-white border-2 border-sky-500 border-dashed p-2 hover:scale-[0.9] transition'
+              <label className='text-sm font-bold text-sky-500' for="title" > Task-Title </label>
+              <input
+                {...register("title", { required: "Title is required" })}
+                className={`w-full outline-0 text-white border-2 border-dashed p-2 hover:scale-[0.9] transition ${errors.title ? "border-red-500" : "border-sky-500"}`}
                 placeholder='Week 1: complete web development project'
-                type="text" />
+                type="text" id='title' name='title' />
+              {errors.title && (<p className='text-sm text-red-500' >{errors.title.message}</p>)}
             </motion.div>
 
             {/* project title & Task number */}
@@ -50,17 +66,21 @@ const AdminDashboard = () => {
               <motion.div initial={{ x: -150 }} animate={{ x: 0 }}
                 className='w-full' >
                 <label className='text-sm font-bold text-sky-500' >Project-Title</label>
-                <input className='w-full outline-0 text-white border-2 border-sky-500 border-dashed p-2 hover:scale-[0.9] transition'
+                <input {...register("projectTitle", { required: "Project title is required" })}
+                  className={`w-full outline-0 text-white border-2 border-dashed p-2 hover:scale-[0.9] transition ${errors.projectTitle ? "border-red-500":"border-sky-500"} `}
                   placeholder='Add the project title'
-                  type="text" />
+                  type="text" id='projectTitle' name='projectTitle' />
+                {errors.projectTitle && (<p className='text-sm text-red-500' >{errors.projectTitle.message}</p>)}
               </motion.div>
 
               <motion.div initial={{ x: 150 }} animate={{ x: 0 }}
                 className='w-full' >
                 <label className='text-sm font-bold text-sky-500' >Task-Number</label>
-                <input className='w-full outline-0 text-white border-2 border-sky-500 border-dashed p-2 hover:scale-[0.9] transition'
+                <input {...register("taskNumber", { required: "Task number is very importants" })}
+                  className={`w-full outline-0 text-white border-2 border-dashed p-2 hover:scale-[0.9] transition ${errors.taskNumber ?"border-red-500":"border-sky-500"}`}
                   placeholder='Task-01 [Add the unique]'
                   type="text" />
+                  {errors.taskNumber && (<p className='text-red-500 text-sm' >{errors.taskNumber.message}</p>)}
               </motion.div>
             </div>
 
@@ -156,7 +176,7 @@ const AdminDashboard = () => {
 
               <motion.button whileHover={{ background: "#141D39", color: "white" }} disabled={uploadImageLoading}
                 className='bg-sky-500 rounded py-2 shadow-sm shadow-sky-500' >
-                {uploadImageLoading ? "....Uploading Image just Wait" :"Upload Image"}
+                {uploadImageLoading ? "....Uploading Image just Wait" : "Upload Image"}
               </motion.button>
             </form>
           </div>

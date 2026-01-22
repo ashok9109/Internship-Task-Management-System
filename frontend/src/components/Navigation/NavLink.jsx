@@ -1,4 +1,4 @@
-import { Album, BackpackIcon, BookCheck, Crown, Home } from "lucide-react";
+import { Album, BackpackIcon, BookCheck, Crown, Home, UploadCloud} from "lucide-react";
 import { NavLink as RouterNavLink, useLocation, useNavigate, } from "react-router";
 import { useDispatch } from 'react-redux';
 import logo from '../../images/hd-logo.png';
@@ -16,6 +16,7 @@ const navlink = [
   { label: "My Courses", icon: BookCheck, to: "/home/my-courses" },
   { label: "My Internship", icon: Album, to: "/home/my-internship" },
   { label: "Admin Dashboard", icon: BackpackIcon, to: "/home/admin-dashoard" },
+  {label:"Admin Task Uploader", icon:UploadCloud, to:"/home/admin-task-uploader"}
 ]
 
 const NavLink = () => {
