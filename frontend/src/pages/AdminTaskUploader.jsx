@@ -2,6 +2,8 @@ import React from 'react'
 import { motion } from "motion/react"
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { createTaskDetailsApi } from '../Apis/AdminTaskUploaderApis'
+import { toast } from 'react-toastify';
 
 const AdminTaskUploader = () => {
 
@@ -13,14 +15,69 @@ const AdminTaskUploader = () => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
 
-    // Task details submit handler
+    // ===============state-for-values=====================
+    const [imageTaskNumber, setImageTaskNumber] = useState("");
+    const [imageUploadFile, setImageUploadFile] = useState(null);
+    const [codeTaskNumber, setCodeTaskNumber] = useState("");
+    const [taskCode, setTaskCode] = useState("");
 
-    const taskDetailsSubmit = async (data) => {
+
+
+    // Task details submit handler
+    const taskDetailsHandler = async (data) => {
+        setTaskDetailsLoading(true);
         try {
-            console.log("this the task details", data)
+            const response = await createTaskDetailsApi(data);
+            if (response) {
+                toast.success("Task Created successfully", { style: { color: "#FFFFFF", background: "#0F172B" } })
+            }
+
+        } catch (error) {
+            console.log("This is error while create task", error);
+            toast.error(error.message || "Task not created", { style: { background: "#000000", color: "#FFFFFF", } })
+        } finally {
+            setTaskDetailsLoading(false);
+            reset();
+        }
+    }
+
+    // Upload image submit handler
+    const uploadImageHandler = async (e) => {
+        e.preventDefault();
+        setUploadImageLoading(true);
+
+        if(!imageTaskNumber){
+            alert("Please Add The Task Number");
+        }
+
+        try {
+            const formData = new FormData();
+            formData.append("imageTaskNumber", imageTaskNumber);
+            formData.append("files", imageUploadFile)
+            console.log("this is the upload image data", formData)
+        } catch (error) {
+
+        } finally {
+            setUploadImageLoading(false);
+            reset();
+        }
+    }
+
+    // Task code submit handler
+    const taskCodeHandler = async (e) => {
+        e.preventDefault();
+        setTaskCodeLoading(true);
+
+        if(!codeTaskNumber){
+            alert("Add The Task Number")
+        }
+        try {
 
         } catch (error) {
 
+        } finally {
+            setTaskCodeLoading(false);
+            reset();
         }
     }
 
@@ -46,14 +103,13 @@ const AdminTaskUploader = () => {
                     </motion.div>
 
                     {/* label and input fields */}
-                    <form onSubmit={handleSubmit(taskDetailsSubmit)} className='w-full p-4' >
+                    <form onSubmit={handleSubmit(taskDetailsHandler)} className='w-full p-4' >
 
                         {/* title input */}
                         <motion.div initial={{ x: -150 }} animate={{ x: 0 }}
                             className='w-full p-4' >
-                            <label className='text-sm font-bold text-sky-500' for="title" > Task-Title </label>
-                            <input
-                                {...register("title", { required: "Title is required" })}
+                            <label className='text-sm font-bold text-sky-500' > Task-Title </label>
+                            <input {...register("title", { required: "Title is required" })}
                                 className={`w-full outline-0 text-white border-2 border-dashed p-2 hover:scale-[0.9] transition ${errors.title ? "border-red-500" : "border-sky-500"}`}
                                 placeholder='Week 1: complete web development project'
                                 type="text" id='title' name='title' />
@@ -88,17 +144,21 @@ const AdminTaskUploader = () => {
                             <motion.div initial={{ x: -150 }} animate={{ x: 0 }}
                                 className='w-full' >
                                 <label className='text-sm font-bold text-sky-500' >Theory Concepts</label>
-                                <input className='w-full outline-0 text-white border-2 border-sky-500 border-dashed p-2 hover:scale-[0.9] transition'
+                                <input {...register("theoryConcepts", { required: "Theory concepts is required" })}
+                                    className={`w-full outline-0 text-white border-2 border-dashed p-2 hover:scale-[0.9] transition ${errors.theoryConcepts ? "border-red-500" : "border-sky-500"}`}
                                     placeholder='Add the points of task'
-                                    type="text" />
+                                    type="text" id='theoryConcepts' name='theoryConcepts' />
+                                {errors.theoryConcepts && (<p className='text-red-500 text-sm' >{errors.theoryConcepts.message}</p>)}
                             </motion.div>
 
                             <motion.div initial={{ x: 150 }} animate={{ x: 0 }}
                                 className='w-full' >
                                 <label className='text-sm font-bold text-sky-500' >Hands-On-Practice</label>
-                                <input className='w-full outline-0 text-white border-2 border-sky-500 border-dashed p-2 hover:scale-[0.9] transition'
+                                <input {...register("handOnPractice", { required: "Hand on practice is required" })}
+                                    className={`w-full outline-0 text-white border-2 border-dashed p-2 hover:scale-[0.9] transition ${errors.handOnPractice ? "border-red-500" : "border-sky-500"}`}
                                     placeholder='Points that interns follow'
-                                    type="text" />
+                                    type="text" id='handOnPractice' name='handOnPractice' />
+                                {errors.handOnPractice && (<p className='text-red-500 text-sm' >{errors.handOnPractice.message}</p>)}
                             </motion.div>
                         </div>
 
@@ -107,26 +167,33 @@ const AdminTaskUploader = () => {
                             <motion.div initial={{ x: -150 }} animate={{ x: 0 }}
                                 className='w-full' >
                                 <label className='text-sm font-bold text-sky-500' >Submission-Requirements</label>
-                                <input className='w-full outline-0 text-white border-2 border-sky-500 border-dashed p-2 hover:scale-[0.9] transition'
+                                <input {...register("submissions", { required: "Submission details is required" })}
+                                    className={`w-full outline-0 text-white border-2 border-dashed p-2 hover:scale-[0.9] transition ${errors.submissions ? "border-red-500" : "border-sky-500"}`}
                                     placeholder='Add the submission points'
-                                    type="text" />
+                                    type="text" id='submissions' name='submissions' />
+                                {errors.submissions && (<p className='text-red-500 text-sm' >{errors.submissions.message}</p>)}
                             </motion.div>
 
                             <motion.div initial={{ x: 150 }} animate={{ x: 0 }}
                                 className='w-full' >
                                 <label className='text-sm font-bold text-sky-500' >Technical-Requirement</label>
-                                <input className='w-full outline-0 text-white border-2 border-sky-500 border-dashed p-2 hover:scale-[0.9] transition'
+                                <input {...register("technicalRequirement", { required: "Technical Requirements is required" })}
+                                    className={`w-full outline-0 text-white border-2 border-dashed p-2 hover:scale-[0.9] transition ${errors.technicalRequirement ? "border-red-500" : "border-sky-500"}`}
                                     placeholder='Add the task structure'
-                                    type="text" />
+                                    type="text" id='technicalRequirement' name='technicalRequirement' />
+                                {errors.technicalRequirement && (<p className='text-red-500 text-sm' >{errors.technicalRequirement.message}</p>)}
                             </motion.div>
                         </div>
 
                         {/* Description */}
                         <div className='w-full p-4' >
                             <label className='text-sm font-bold text-sky-500' >Description</label>
-                            <textarea className='w-full outline-0 text-white border-2 border-sky-500 border-dashed p-2 hover:scale-[0.9] transition'
+                            <textarea {...register("description", { required: "Description is required" })}
+                                className={`w-full outline-0 text-white border-2 border-dashed p-2 hover:scale-[0.9] transition ${errors.description ? "border-red-500" : "border-sky-500"}`}
                                 placeholder='Explain the task in detail'
-                                rows={5} name="" id=""></textarea>
+                                rows={5} name="description" id="description">
+                            </textarea>
+                            {errors.description && (<p className='text-red-500 text-sm' >{errors.description.message}</p>)}
                         </div>
 
                         <motion.button whileHover={{ background: "#141D39", color: "white" }} disabled={taskDetailsLoading}
@@ -154,27 +221,23 @@ const AdminTaskUploader = () => {
                         </ul>
 
                         {/* this is the form for uploading */}
-                        <form className='w-full space-y-2 flex flex-col ' >
+                        <form onSubmit={uploadImageHandler} className='w-full space-y-2 flex flex-col ' >
 
                             {/* upload task number */}
                             <label className='text-sm text-sky-500' > Add Task Number</label>
                             <label className='w-full border-2 flex itmes-center justify-center border-sky-500 border-dashed rounded-sm p-1 hover:scale-[0.9] transition' >
-                                <input
-                                    className='w-full p-2 outline-0 text-white'
-                                    type="text" placeholder='Task-01' />
+                                <input onChange={(e)=> setImageTaskNumber(e.target.value)} value={imageTaskNumber} className='w-full p-2 outline-0 text-white' type="text" placeholder='Task-01' />
                             </label>
 
                             {/* uplaod image input field */}
-                            <label className=' text-sm text-sky-500' >
-                                Uploading image
-                            </label>
+                            <label className=' text-sm text-sky-500' >Uploading image </label>
                             <label className='w-full border-2 flex itmes-center justify-center border-sky-500 border-dashed rounded-sm p-6 hover:scale-[0.9] transition' >
                                 <h1 className='text-sm text-slate-500' >Drag and Drop</h1>
-                                <input className='hidden' type="file" />
+                                <input onChange={(e)=>setImageUploadFile(e.target.files[0] || null)} className='hidden' accept='image/*' type="file" />
                             </label>
 
                             <motion.button whileHover={{ background: "#141D39", color: "white" }} disabled={uploadImageLoading}
-                                className='bg-sky-500 rounded py-2 shadow-sm shadow-sky-500' >
+                                type='submit' className='bg-sky-500 rounded py-2 shadow-sm shadow-sky-500' >
                                 {uploadImageLoading ? "....Uploading Image just Wait" : "Upload Image"}
                             </motion.button>
                         </form>
@@ -191,21 +254,18 @@ const AdminTaskUploader = () => {
                         </ul>
 
                         {/* this is the form for uploading */}
-                        <form className='w-full space-y-2 flex flex-col ' >
+                        <form onSubmit={taskCodeHandler} className='w-full space-y-2 flex flex-col ' >
 
                             {/* upload task number */}
                             <label className='text-sm text-sky-500' > Add Task Number</label>
                             <label className='w-full border-2 flex itmes-center justify-center border-sky-500 border-dashed rounded-sm p-1 hover:scale-[0.9] transition' >
-                                <input className='w-full p-2 outline-0 text-white' type="text" placeholder='Task-01' />
+                                <input onChange={(e)=> setCodeTaskNumber(e.target.value)} value={codeTaskNumber} className='w-full p-2 outline-0 text-white' type="text" placeholder='Task-01' />
                             </label>
 
                             {/* uplaod image input field */}
                             <label className=' text-sm text-sky-500' > Add the task code </label>
                             <label className='w-full border-2 flex itmes-center justify-center border-sky-500 border-dashed rounded-sm hover:scale-[0.9] transition' >
-                                <input
-                                    className='h-full w-full text-white p-6 outline-0'
-                                    placeholder='Add Task Code'
-                                    type="text" />
+                                <input onChange={(e) => setTaskCode(e.target.value)} value={taskCode} className='h-full w-full text-white p-6 outline-0' placeholder='Add Task Code' type="text" />
                             </label>
 
                             <motion.button whileHover={{ background: "#141D39", color: "white" }} disabled={taskCodeLoading}

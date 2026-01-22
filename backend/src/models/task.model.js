@@ -25,10 +25,6 @@ const taskSchema = new mongoose.Schema({
         type: String
     },
 
-    stepByByGuide: {
-        type: String
-    },
-
     sampleOutput: {
         type: String
     },
