@@ -74,7 +74,8 @@ const taskCodeController = async (req, res) => {
 
         return res.status(200).json({
             success: true,
-            message: "Task update successfully"
+            message: "Task update successfully",
+            task
         })
 
     } catch (error) {
@@ -88,5 +89,64 @@ const taskCodeController = async (req, res) => {
 }
 
 
+// =============================
+// Git all task controller
+// =============================
 
-module.exports = { createTaskController, taskCodeController };
+const getAllTaskController = async(req, res)=>{
+    try {
+
+        const tasks = await taskModel.find().sort({createdAt:1})
+
+        return res.status(200).json({
+            success:true,
+            message:"Task fetched successfully",
+            tasks
+        })
+        
+    } catch (error) {
+        console.log("error fetching all task", error);
+        return res.status(500).json({
+            success:false,
+            message:"Internal server error",
+            error:error
+        })
+    }
+}
+
+
+// ==============================
+// single task api
+// =============================
+
+const singleTaskController = async(req, res)=>{
+    try {
+        const taskId = req.params.id;
+
+        const task = await taskModel.findById(taskId);
+
+        if(!task){
+            return res.status(404).json({
+                success:false,
+                message:"Task not found",
+            })
+        }
+
+        return res.status(200).json({
+            success:true,
+            message:"single task fetched successfully",
+            task
+        })
+
+    } catch (error) {
+        console.logl("error while fetching single task", error);
+        return res.status(500).json({
+            success:false,
+            messager:"Internal server error",
+            error:error
+        })
+    }
+}
+
+
+module.exports = { createTaskController, taskCodeController, getAllTaskController, singleTaskController };

@@ -23,7 +23,6 @@ export const createTaskDetailsApi = async(data) =>{
 export const addCodeTaskApi = async(data)=>{
     try {
         const response = await axiosintance.patch("/api/admin/task-code-uploader", data);
-        console.log("this is  the code task date", data)
         if(response){
             return response.data
         }
@@ -31,3 +30,18 @@ export const addCodeTaskApi = async(data)=>{
         throw error.response?.data || error;
     }
 };
+
+// =============================
+// Get all task api
+// =============================
+
+export const getAllTaskApi = async()=>{
+    try {
+        const response = await axiosintance.get("/api/admin/all-task");
+        if(response){
+            return response.data
+        }
+    } catch (error) {
+        throw error.response?.data || error;
+    }
+}

@@ -1,5 +1,5 @@
 const express = require("express");
-const { createTaskController, taskCodeController } = require("../controllers/taskUploader.controller");
+const { createTaskController, taskCodeController, getAllTaskController, singleTaskController } = require("../controllers/taskUploader.controller");
 
 
 const router = express.Router();
@@ -15,5 +15,18 @@ router.post("/task-uploader", createTaskController);
 // =============================
 
 router.patch("/task-code-uploader", taskCodeController);
+
+// ======================================
+// fetching all task for interns api
+// ======================================
+
+router.get("/all-task", getAllTaskController);
+
+
+// =============================
+// fetching single task api
+// =============================
+
+router.get("/single-task/:id", singleTaskController);
 
 module.exports = router;
