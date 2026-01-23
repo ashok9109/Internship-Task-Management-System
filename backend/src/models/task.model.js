@@ -5,8 +5,8 @@ const taskSchema = new mongoose.Schema({
         type: String,
     },
 
-    taskNumber:{
-        type:String
+    taskNumber: {
+        type: String
     },
 
     theoryConcepts: {
@@ -26,7 +26,8 @@ const taskSchema = new mongoose.Schema({
     },
 
     sampleOutput: {
-        type: String
+        type: String,
+        default: ""
     },
 
     submissions: {

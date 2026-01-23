@@ -1,5 +1,5 @@
 const express = require("express");
-const { createTaskController } = require("../controllers/taskUploader.controller");
+const { createTaskController, taskCodeController } = require("../controllers/taskUploader.controller");
 
 
 const router = express.Router();
@@ -9,5 +9,11 @@ const router = express.Router();
 // ===============================
 
 router.post("/task-uploader", createTaskController);
+
+// ===============================
+// task code uploader api
+// =============================
+
+router.patch("/task-code-uploader", taskCodeController);
 
 module.exports = router;
