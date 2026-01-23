@@ -3,6 +3,7 @@ import bg from '../images/mern-stack-image.png'
 import { useEffect } from 'react';
 import { getAllTaskApi } from '../Apis/AdminTaskUploaderApis';
 import { Upload} from "lucide-react";
+import { Link } from 'react-router';
 
 
 const MyInternship = () => {
@@ -86,8 +87,8 @@ const MyInternship = () => {
       </section>
 
       {/* Task showing section */}
-      <section className='min-h-screen w-full md:p-5 ' >
-        <div className='h-screen md:h-full max-w-4xl flex flex-col items-center justify-center bg-slate-900/50 border-2 border-sky-500 rounded-lg shadow-lg shadow-sky-500 p-2 ' >
+      <section className='min-h-screen w-full md:p-5 flex items-center justify-center ' >
+        <div className='h-screen md:h-full w-full flex flex-col items-center justify-center bg-slate-900/50 border-2 border-sky-500 rounded-lg shadow-lg shadow-sky-500 p-2 ' >
 
           {/* Heading */}
           <h1 className='text-white font4 md:text-3xl' >INTERNSHIP TASK</h1>
@@ -96,14 +97,15 @@ const MyInternship = () => {
               <div className='w-full font1 border-2 border-sky-500 shadow-lg shadow-sky-500 rounded-sm flex flex-col p-4 mt-5 md:mt-10 hover:scale-[0.9] transition' key={task._id}>
                 <div className='w-full flex items-center justify-between' >
                 <h1 className='text-sm text-gray-400 font-bold font1'>{task.title}</h1>
-                <h1 className='text-white' > <Upload/></h1>
+                <Link to={`/home/task-details/${task._id}`} >
+                <h1 className='text-white' >view Task <Upload/></h1>
+                </Link>
                 </div>
               </div>
             ))}
           </div>
         </div>
       </section>
-
     </section>
 
   )

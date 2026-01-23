@@ -241,7 +241,7 @@ const AdminTaskUploader = () => {
 
                     {/* Right div */}
                     <div className='w-full max-w-5xl flex flex-col items-center justify-center bg-slate-900/50 shadow shadow-lg shadow-sky-500 border-2 border-sky-500 rounded-lg space-y-7 p-10' >
-                        <h1 className='text-white text-sm font-bold font1' >2. Add the task code for interns</h1>
+                        <h1 className='text-white text-sm font-bold font1 md:text-3xl' >2. Add the task code for interns</h1>
                         <p className='text-sm text-slate-400 font5 ' >This task code is help the interns to complete the task and add internship task with the <span className='text-sky-500 text-sm font-bold ' >Task Number</span></p>
 
                         <ul className='list-disc list-inside text-white text-sm' >

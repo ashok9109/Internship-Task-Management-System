@@ -8,6 +8,7 @@ import MyInternship from '../pages/MyInternship'
 import AdminDashboard from '../pages/AdminDashboard'
 import SpecialOffer from '../pages/SpecialOffer'
 import AdminTaskUploader from '../pages/AdminTaskUploader'
+import TaskDetails from '../pages/TaskDetails'
 
 const AppRouter = () => {
     const router = createBrowserRouter([
@@ -42,6 +43,10 @@ const AppRouter = () => {
                         {
                             path: 'my-internship',
                             element: <MyInternship />
+                        },
+                        {
+                            path:"task-details/:id",
+                            element:<TaskDetails/>
                         },
                         {
                             path:'admin-task-uploader',
