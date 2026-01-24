@@ -98,7 +98,7 @@ const MyInternship = () => {
                 <div className='w-full flex items-center justify-between' >
                 <h1 className='text-sm text-gray-400 font-bold font1'>{task.title}</h1>
                 <Link to={`/home/task-details/${task._id}`} >
-                <h1 className='text-white' >view Task <Upload/></h1>
+                <h1 className='text-white hover:bg-white hover:text-black rounded-lg p-2' >view Task <Upload/></h1>
                 </Link>
                 </div>
               </div>
