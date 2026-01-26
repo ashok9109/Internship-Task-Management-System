@@ -30,32 +30,55 @@ const TaskDetails = () => {
 
 
     return (
-        <section className='min-h-full w-full bg-[#1A2546] flex flex-col items-center justify-center p-5 md:p-10' >
+        <section className='min-h-full w-full bg-[#1A2546] flex flex-col items-center justify-center p-5 md:p-10 relative' >
             {task ? (
-                <section className='w-full flex flex-col space-y-4 bg-[#1A2537] border-2 border-sky-500 md:p-10 rounded-lg shadow-lg shadow-sky-500  p-3' >
+                <section className='h-full w-full flex flex-col space-y-4 bg-[#1A2537] border-2 border-sky-500 md:p-10 rounded-lg shadow-lg shadow-sky-500  p-3' >
                     <h1 className='text-sky-500 font-bold font4' >{task.title}</h1>
-                    <div className='text-white font1 bg-slate-900/70 md:p-10 rounded-sm' >
-                        <p>{task.theoryConcepts}</p>
+
+                    {/* Theory concepts div */}
+                    <div className='flex flex-col gap-2' >
+                        <h1 className='text-white font1' >📚 Theory Concepts: </h1>
+                        <p className='text-white font1 bg-slate-900/70 md:p-10 rounded-sm' >{task.theoryConcepts}</p>
                     </div>
 
-                    <div className='text-white font1 bg-slate-900/70 md:p-10 rounded-sm'>
-                        <p>{task.handOnPractice}</p>
+                    {/* Hand on practice div */}
+                    <div className='flex flex-col gap-2' >
+                        <h1 className='text-white font1' >🛠️ Hands-On Practice: </h1>
+                        <p className='text-white font1 bg-slate-900/70 md:p-10 rounded-sm' >{task.handOnPractice}</p>
                     </div>
 
+                    {/* Project title */}
                     <div className='text-sky-500 font4 font-bold' >
                         <h1>{task.projectTitle}</h1>
                     </div>
 
-                    <div className='text-white font1 bg-slate-900/70 md:p-10 rounded-sm' >
-                        <p>{task.description}</p>
+                    {/* Technical requirements div */}
+                    <div className='flex flex-col gap-2' >
+                        <h1 className='text-white font1' >🛠️ Technical Requirements: </h1>
+                        <p className='text-white font1 bg-slate-900/70 md:p-10 rounded-sm' >{task.technicalRequirements}</p>
                     </div>
 
-                    <div className='text-green-500 font1 bg-slate-900/70 md:p-10 rounded-sm' >
-                        <p>{task.sampleOutput}</p>
+                    {/* Project description */}
+                    <div className='flex flex-col gap-2 text-white font1 bg-slate-900/70 md:p-10 rounded-sm' >
+                        <h1>📋 Step-by-Step Guide:</h1>
+                        <p className='text-white font1 bg-slate-900/70 md:p-10 rounded-sm' >{task.stepByStep}</p>
                     </div>
 
-                    <div className='text-white font1 md:p-10' >
-                        <p>{task.submissions}</p>
+                    <div className='w-[40%]' >
+                        <div className='text-green-500 font1 bg-slate-900/70 md:p-10 rounded-sm overflow-x-auto' >
+                            <code>{task.sampleOutput}</code>
+                        </div>
+                    </div>
+
+                    {/* Tips and resources div */}
+                    <div className='flex flex-col gap-2' >
+                        <h1 className='text-white font1' >💡 Tips & Resources:</h1>
+                        <p className='text-white font1 bg-slate-900/70 md:p-10 rounded-sm' >{task.tipResources}</p>
+                    </div>
+
+                    <div className='flex flex-col gap-2' >
+                        <h1 className='text-white font1' >📤 Submission Requirements:</h1>
+                        <p className='text-white font1 md:p-5' >{task.submissions}</p>
                     </div>
                 </section>
             ) : (

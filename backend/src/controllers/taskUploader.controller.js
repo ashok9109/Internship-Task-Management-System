@@ -6,9 +6,9 @@ const taskModel = require("../models/task.model")
 const createTaskController = async (req, res) => {
     try {
 
-        const { title, taskNumber, theoryConcepts, handOnPractice, projectTitle, technicalRequirements, submissions, description } = req.body
+        const { title, taskNumber, theoryConcepts, handOnPractice, projectTitle, technicalRequirements, stepByStep, submissions,  tipResources } = req.body
 
-        if (!title || !taskNumber || !projectTitle || !description) {
+        if (!title || !taskNumber || !projectTitle || !stepByStep) {
             return res.status(400).json({
                 success: false,
                 message: "All fieds is required"
@@ -22,8 +22,9 @@ const createTaskController = async (req, res) => {
             handOnPractice,
             projectTitle,
             technicalRequirements,
+            stepByStep,
             submissions,
-            description
+            tipResources,
         });
 
         return res.status(200).json({

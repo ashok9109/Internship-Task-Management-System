@@ -53,7 +53,7 @@ const Register = ({ setToggle }) => {
 
                         {/* Full Name */}
                         <div className='flex flex-col px-5 py-1 space-y-1' >
-                            <label className='text-white text-sm hover:scale-[1.1] transition' for="fullName" >Full Name</label>
+                            <label className='text-white text-sm hover:scale-[1.1] transition' >Full Name</label>
                             <input
                                 {...register("fullName", {
                                     required: "Full name is required",
@@ -69,7 +69,7 @@ const Register = ({ setToggle }) => {
 
                         {/* mobile */}
                         <div className='flex flex-col px-5 py-1' >
-                            <label className='text-white text-sm hover:scale-[1.1] transition' for="mobile" >Mobile</label>
+                            <label className='text-white text-sm hover:scale-[1.1] transition' >Mobile</label>
                             <input
                                 {...register("mobile", {
                                     required: "Mobile number is required",
@@ -85,7 +85,7 @@ const Register = ({ setToggle }) => {
 
                         {/* email */}
                         <div className='flex flex-col px-5 py-1' >
-                            <label className='text-white text-sm hover:scale-[1.1] transition' for="email" >Email</label>
+                            <label className='text-white text-sm hover:scale-[1.1] transition' >Email</label>
                             <input
                                 {...register("email", {
                                     required: "Email is required",
@@ -101,7 +101,7 @@ const Register = ({ setToggle }) => {
 
                         {/* password */}
                         <div className='flex flex-col px-5 py-1' >
-                            <label className='text-white text-sm hover:scale-[1.1] transition' for="password" >Password</label>
+                            <label className='text-white text-sm hover:scale-[1.1] transition' >Password</label>
                             <input
                                 {...register("password", {
                                     required: "Password is required",

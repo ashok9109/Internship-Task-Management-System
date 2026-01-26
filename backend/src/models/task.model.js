@@ -4,11 +4,9 @@ const taskSchema = new mongoose.Schema({
     title: {
         type: String,
     },
-
     taskNumber: {
         type: String
     },
-
     theoryConcepts: {
         type: String
     },
@@ -24,6 +22,9 @@ const taskSchema = new mongoose.Schema({
     technicalRequirements: {
         type: String
     },
+    stepByStep: {
+        type: String
+    },
 
     sampleOutput: {
         type: String,
@@ -34,9 +35,10 @@ const taskSchema = new mongoose.Schema({
         type: String
     },
 
-    description: {
+    tipResources: {
         type: String
     }
+
 
 }, { timestamps: true })
 

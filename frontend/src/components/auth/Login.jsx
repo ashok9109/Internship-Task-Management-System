@@ -60,7 +60,7 @@ const Login = ({ setToggle }) => {
 
                         {/* email */}
                         <div className='flex flex-col px-5 py-1 space-y-3' >
-                            <label className='text-white text-sm hover:scale-[1.1] transition' for='email' >Email</label>
+                            <label className='text-white text-sm hover:scale-[1.1] transition' >Email</label>
                             <input
                                 {...register("email", {
                                     required: "Email is required",
@@ -76,7 +76,7 @@ const Login = ({ setToggle }) => {
 
                         {/* password */}
                         <div className='flex flex-col px-5 py-1 space-y-4' >
-                            <label className='text-white text-sm hover:scale-[1.1] tansition' for="password" >Password</label>
+                            <label className='text-white text-sm hover:scale-[1.1] tansition' >Password</label>
                             <input
                                 {...register("password", {
                                     required: "Password is required",
