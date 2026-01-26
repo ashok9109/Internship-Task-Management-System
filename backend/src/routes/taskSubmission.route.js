@@ -1,5 +1,5 @@
 const express = require("express");
-const { taskSubmissionController } = require("../controllers/taskSubmission.controller");
+const { taskSubmissionController, submissionStatusController } = require("../controllers/taskSubmission.controller");
 const authMiddleware = require("../middlewares/auth.middleware");
 
 
@@ -12,6 +12,11 @@ const router = express.Router();
 
 router.post("/intern-task",authMiddleware, taskSubmissionController);
 
+// ==============================
+// Submission status api
+// ===========================
+
+router.get("/task-status/:taskId", authMiddleware, submissionStatusController);
 
 
 

@@ -45,4 +45,45 @@ const taskSubmissionController = async (req, res) => {
     }
 }
 
-module.exports = { taskSubmissionController }
+
+// ==============================
+// Submission status controller
+// ==============================
+
+const submissionStatusController = async (req, res) => {
+    try {
+
+        const { taskId } = req.params;
+
+        const user = req.user;
+
+        const submission = await taskSubmissionModel.findOne({
+            taskId,
+            internId: user._id
+        })
+
+        if (!submission) {
+            return res.status(200).json({
+                submitted: false
+            })
+        }
+
+        return res.status(200).json({
+            submitted: true,
+            status: submission.status,
+            submission
+        })
+
+    } catch (error) {
+        console.log("error while fetching the status", error);
+        return res.status(500).json({
+            success: false,
+            message: "Internal server error",
+            error: error
+        })
+    }
+}
+
+
+
+module.exports = { taskSubmissionController, submissionStatusController }
