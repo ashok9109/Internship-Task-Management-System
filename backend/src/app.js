@@ -3,6 +3,7 @@ const cookieParser = require("cookie-parser");
 const authRouter = require("./routes/auth.routes");
 const cors = require("cors");
 const taskUploaderRouter = require("./routes/taskUploader.routes");
+const TaskSubmissionRouter = require("./routes/taskSubmission.route");
 
 
 const app = express();
@@ -31,6 +32,11 @@ app.use("/api/auth", authRouter);
 // Admin Task uploader Api
 // =========================
 app.use("/api/admin", taskUploaderRouter);
+
+// ============================
+// Task submission Api
+// ============================
+app.use("/api/submission", TaskSubmissionRouter)
 
 
 module.exports = app;

@@ -61,7 +61,8 @@ const AdminTaskUploader = () => {
     }
 
     // Task code submit handler
-    const taskCodeHandler = async () => {
+    const taskCodeHandler = async (e) => {
+        e.preventDefault()
         setTaskCodeLoading(true);
 
         if (!codeTaskNumber) {
