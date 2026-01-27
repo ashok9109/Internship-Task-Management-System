@@ -3,6 +3,25 @@ import { useParams } from 'react-router';
 import { axiosintance } from '../config/axiosintance';
 import { taskSubmissionApi } from '../Apis/TaskSubmissionApi';
 
+const TaskStatusBadge = ({ status }) => {
+    const statusStyle = {
+        pending: "bg-slate-900/50 text-white",
+        approved: "bg-green-500 texk-black",
+        rejected: "bg-red-500 text-black"
+    }
+    const statusText = {
+        pending: "⏳ Pending Approval",
+        approved: "✅ Approved",
+        rejected: "❌ Rejected",
+    }
+
+    return (
+        <div className={`text-sm font1 p-4 rounded-lg border-2 border-sky-500 shadow-lg shadow-sky-500 ${statusStyle[status]}`} >
+            {statusText[status]}
+        </div>
+    );
+;}
+
 const TaskDetails = () => {
 
     const { id } = useParams();
@@ -10,8 +29,10 @@ const TaskDetails = () => {
     const [task, setTask] = useState(null);
     const [gitLink, setGitLink] = useState("");
     const [docsLink, setDocsLink] = useState("");
-    const [remarks, setRemarks] = useState("")
+    const [remarks, setRemarks] = useState("");
     const [loading, setLoading] = useState(false);
+    const [submitted, setSubmitted] = useState(false);
+    const [taskStatus, setTaskStatus] = useState(null);
 
     // ====================================================
     // Fetching the single task and showing
@@ -31,17 +52,12 @@ const TaskDetails = () => {
         fetchTask();
     }, [id])
 
-    if (!task) {
-        <h1>......Loading Task Please wait</h1>
-    }
-
-
     // ==========================================
     // Task submit handler for the interns
     // ==========================================
 
     const taskHandlerSubmit = async (e) => {
-        e.preventDefault()
+        e.preventDefault();
         setLoading(true);
 
         if (!gitLink) {
@@ -74,68 +90,102 @@ const TaskDetails = () => {
         } finally {
             setLoading(false);
         }
+    };
+
+    // ========================================
+    // fetching the interns task status
+    // =====================================
+
+    useEffect(() => {
+        if (!task) {
+            return
+        }
+        const fetchStatus = async () => {
+            try {
+                const response = await axiosintance.get(`/api/submission/task-status/${id}`);
+                if (response.data.submitted) {
+                    setSubmitted(true);
+                    setTaskStatus(response.data.status);
+                }
+            } catch (error) {
+                console.log("error while fetching task status")
+            }
+        }
+        fetchStatus();
+    }, [task])
+
+
+    // ======================================
+    // checking task is present aur not
+    // ======================================
+
+    if (!task) {
+        return (
+            <div className='min-h-screen flex flex-col items-center justify-center' >
+                <h1 className='text-black text-2xl' >.....Loading task</h1>
+            </div>
+        )
     }
 
 
     return (
-        <section className='min-h-full w-full bg-[#1A2546] flex flex-col items-center justify-center p-5 md:p-10 relative' >
-            {task ? (
-                <section className='h-full w-full flex flex-col space-y-4 bg-[#1A2537] border-2 border-sky-500 md:p-10 rounded-lg shadow-lg shadow-sky-500  p-3' >
-                    <h1 className='text-sky-500 font-bold font4' >{task.title}</h1>
+        <section className='min-h-full w-full overflow-hidden bg-[#1A2546] flex flex-col items-center justify-center p-5 md:p-10' >
+            <section className='h-full w-full flex flex-col space-y-4 bg-[#1A2537] border-2 border-sky-500 md:p-10 rounded-lg shadow-lg shadow-sky-500  p-3' >
+                <h1 className='text-sky-500 font-bold font4' >{task.title}</h1>
 
-                    {/* Theory concepts div */}
-                    <div className='flex flex-col gap-2' >
-                        <h1 className='text-white font1' >📚 Theory Concepts: </h1>
-                        <p className='text-white font1 bg-slate-900/70 md:p-10 rounded-sm' >{task.theoryConcepts}</p>
-                    </div>
+                {/* Theory concepts div */}
+                <div className='flex flex-col gap-2' >
+                    <h1 className='text-white font1' >📚 Theory Concepts: </h1>
+                    <p className='text-white font1 bg-slate-900/70 md:p-10 rounded-sm' >{task.theoryConcepts}</p>
+                </div>
 
-                    {/* Hand on practice div */}
-                    <div className='flex flex-col gap-2' >
-                        <h1 className='text-white font1' >🛠️ Hands-On Practice: </h1>
-                        <p className='text-white font1 bg-slate-900/70 md:p-10 rounded-sm' >{task.handOnPractice}</p>
-                    </div>
+                {/* Hand on practice div */}
+                <div className='flex flex-col gap-2' >
+                    <h1 className='text-white font1' >🛠️ Hands-On Practice: </h1>
+                    <p className='text-white font1 bg-slate-900/70 md:p-10 rounded-sm' >{task.handOnPractice}</p>
+                </div>
 
-                    {/* Project title */}
-                    <div className='text-sky-500 font4 font-bold' >
-                        <h1>{task.projectTitle}</h1>
-                    </div>
+                {/* Project title */}
+                <div className='text-sky-500 font4 font-bold' >
+                    <h1>{task.projectTitle}</h1>
+                </div>
 
-                    {/* Technical requirements div */}
-                    <div className='flex flex-col gap-2' >
-                        <h1 className='text-white font1' >🛠️ Technical Requirements: </h1>
-                        <p className='text-white font1 bg-slate-900/70 md:p-10 rounded-sm' >{task.technicalRequirements}</p>
-                    </div>
+                {/* Technical requirements div */}
+                <div className='flex flex-col gap-2' >
+                    <h1 className='text-white font1' >🛠️ Technical Requirements: </h1>
+                    <p className='text-white font1 bg-slate-900/70 md:p-10 rounded-sm' >{task.technicalRequirements}</p>
+                </div>
 
-                    {/* Project description */}
-                    <div className='flex flex-col gap-2 text-white font1 bg-slate-900/70 md:p-10 rounded-sm' >
-                        <h1>📋 Step-by-Step Guide:</h1>
-                        <p className='text-white font1 bg-slate-900/70 md:p-10 rounded-sm' >{task.stepByStep}</p>
-                    </div>
+                {/* Project description */}
+                <div className='flex flex-col gap-2 text-white font1 bg-slate-900/70 md:p-10 rounded-sm' >
+                    <h1 className='text-white font1'  >📋 Step-by-Step Guide:</h1>
+                    <p className='text-white font1 bg-slate-900/70 md:p-10 rounded-sm' >{task.stepByStep}</p>
+                </div>
 
-                    <div className='w-full md:w-[40%]' >
-                        <div className='text-green-500 font1 bg-slate-900/70 md:p-10 rounded-sm overflow-x-auto' >
-                            <code>{task.sampleOutput}</code>
-                        </div>
-                    </div>
+                {/* sample code */}
+                <div className='w-full md:w-full' >
+                    <h1 className='text-white font1'  >💻 Sample Code:</h1>
+                    <pre className='text-green-500 font1 bg-slate-900/70 md:p-10 w-full rounded-sm overflow-x-auto relative' >
+                        <code className='' >{task.sampleOutput}</code>
+                    </pre>
+                </div>
 
-                    {/* Tips and resources div */}
-                    <div className='flex flex-col gap-2' >
-                        <h1 className='text-white font1' >💡 Tips & Resources:</h1>
-                        <p className='text-white font1 bg-slate-900/70 md:p-10 rounded-sm' >{task.tipResources}</p>
-                    </div>
+                {/* Tips and resources div */}
+                <div className='flex flex-col gap-2' >
+                    <h1 className='text-white font1' >💡 Tips & Resources:</h1>
+                    <p className='text-white font1 bg-slate-900/70 md:p-10 rounded-sm' >{task.tipResources}</p>
+                </div>
 
-                    <div className='flex flex-col gap-2' >
-                        <h1 className='text-white font1' >📤 Submission Requirements:</h1>
-                        <p className='text-white font1 md:p-5' >{task.submissions}</p>
-                    </div>
+                <div className='flex flex-col gap-2' >
+                    <h1 className='text-white font1' >📤 Submission Requirements:</h1>
+                    <p className='text-white font1 md:p-5' >{task.submissions}</p>
+                </div>
 
-                    {/* Task submiting fields */}
-                    <section className='w-full' >
-
+                {/* Task submiting fields */}
+                <section className='w-full' >
+                    {!submitted ? (
                         <div className='flex flex-col items-center justify-center' >
                             <h1 className='text-sky-500 font4 font-bold md:text-2xl' > 📤 Submit Your Task</h1>
-
-                            {/* task submission form */}
                             <form onSubmit={taskHandlerSubmit} className='w-full flex flex-col gap-4 border-2 border-sky-500 shadow-lg shadow-sky-500 rounded-lg p-5' >
 
                                 {/* git hub input */}
@@ -162,14 +212,12 @@ const TaskDetails = () => {
                                 <button disabled={loading} type='submit' className='max-w-sm text-black bg-sky-500 py-2 shadow-lg shadow-sky-500 rounded-sm' >{loading ? "...submitting task" : "submit"}</button>
                             </form>
                         </div>
-
-                    </section>
+                    ) : (
+                        <TaskStatusBadge status={taskStatus}/>
+                    )}
                 </section>
-            ) : (
-                <div>
-                    <h1>....Loading</h1>
-                </div>
-            )}
+            </section>
+
         </section>
     )
 }

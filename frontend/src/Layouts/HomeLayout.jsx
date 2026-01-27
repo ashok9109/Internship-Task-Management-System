@@ -23,7 +23,7 @@ const HomeLayout = () => {
         </header>
 
       <div className='h-full md:flex ' >
-        <aside className= {`w-full md:w-[40%] bg-slate-900 
+        <aside className= {`w-full md:w-[27%] bg-slate-900 
         ${openMenu? "block":"hidden"} md:hidden lg:block 
         `}
         >
@@ -31,7 +31,7 @@ const HomeLayout = () => {
         </aside>
 
         {/* This is right page */}
-        <div className='min-h-screen w-full' >
+        <div className='min-h-screen w-full md:w-[75%]' >
           <Outlet />
         </div>
       </div>

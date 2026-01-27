@@ -4,6 +4,8 @@ const authRouter = require("./routes/auth.routes");
 const cors = require("cors");
 const taskUploaderRouter = require("./routes/taskUploader.routes");
 const TaskSubmissionRouter = require("./routes/taskSubmission.route");
+const DashboardRouter = require("./routes/dashboard.routes");
+const AdminDashboardRouter = require("./routes/adminDashboard.routes");
 
 
 const app = express();
@@ -24,19 +26,29 @@ app.use(express.json());
 app.use(cookieParser());
 
 // ========================
-// Auth Api
+// Auth Apis
 // ========================
 app.use("/api/auth", authRouter);
 
 // ==========================
-// Admin Task uploader Api
+// Admin Task uploader Apis
 // =========================
 app.use("/api/admin", taskUploaderRouter);
 
 // ============================
-// Task submission Api
+// Task submission Apis
 // ============================
-app.use("/api/submission", TaskSubmissionRouter)
+app.use("/api/submission", TaskSubmissionRouter);
+
+// ==========================
+// Admin dashboard Apis
+// ==========================
+app.use("/api/admin/dashboard", AdminDashboardRouter);
+
+// =========================
+// Interns Dashboard APis
+// =========================
+app.use("/api/dashboard", DashboardRouter);
 
 
 module.exports = app;
