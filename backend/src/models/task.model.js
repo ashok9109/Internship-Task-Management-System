@@ -1,44 +1,26 @@
 const mongoose = require("mongoose");
 
 const taskSchema = new mongoose.Schema({
-    title: {
-        type: String,
-    },
-    taskNumber: {
-        type: String
-    },
-    theoryConcepts: {
-        type: String
-    },
+    
+    title: { type: String, },
 
-    handOnPractice: {
-        type: String
-    },
+    taskNumber: { type: String },
 
-    projectTitle: {
-        type: String
-    },
+    theoryConcepts: { type: String },
 
-    technicalRequirements: {
-        type: String
-    },
-    stepByStep: {
-        type: String
-    },
+    handOnPractice: { type: String },
 
-    sampleOutput: {
-        type: String,
-        default: ""
-    },
+    projectTitle: { type: String },
 
-    submissions: {
-        type: String
-    },
+    technicalRequirements: { type: String },
 
-    tipResources: {
-        type: String
-    }
+    stepByStep: { type: String },
 
+    sampleOutput: { type: String, default: "" },
+
+    submissions: { type: String },
+
+    tipResources: { type: String }
 
 }, { timestamps: true })
 

@@ -6,6 +6,7 @@ const taskUploaderRouter = require("./routes/taskUploader.routes");
 const TaskSubmissionRouter = require("./routes/taskSubmission.route");
 const DashboardRouter = require("./routes/dashboard.routes");
 const AdminDashboardRouter = require("./routes/adminDashboard.routes");
+const InternsProfileRouter = require("./routes/internsProfile.routes");
 
 
 const app = express();
@@ -49,6 +50,11 @@ app.use("/api/admin/dashboard", AdminDashboardRouter);
 // Interns Dashboard APis
 // =========================
 app.use("/api/dashboard", DashboardRouter);
+
+// =========================
+// Interns Profile Apis
+// =========================
+app.use("/api/interns", InternsProfileRouter);
 
 
 module.exports = app;

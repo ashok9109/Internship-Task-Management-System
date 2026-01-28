@@ -14,4 +14,19 @@ export const deleteTaskApi = async(taskId)=>{
     } catch (error) {
         throw error.response?.data || error;
     }
+};
+
+// ================================
+// Creating Profile of interns api
+// ================================
+
+export const createInternsProfileAPi = async(data)=>{
+    try {
+        const response = await axiosintance.post("api/interns/profile-create", data);
+        if(response){
+            return response.data;
+        }
+    } catch (error) {
+        throw error.response?.data || error;
+    }
 }
