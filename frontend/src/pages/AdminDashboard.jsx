@@ -1,13 +1,16 @@
 import { useEffect, useState } from 'react'
 import { getAllTaskApi } from '../Apis/AdminTaskUploaderApis';
-import { createInternsProfileAPi, deleteTaskApi } from '../Apis/AdminDashboardApis';
+import { createInternsProfileAPi, deleteTaskApi, fetchingAllInternsProfileApi } from '../Apis/AdminDashboardApis';
 import { toast } from 'react-toastify';
 import { useForm } from 'react-hook-form';
+import { Copy, ExternalLink } from "lucide-react";
 
 const AdminDashboard = () => {
 
   // ==============states==============
   const [task, setTask] = useState(null);
+  const [internsProfile, setInternsProfile] = useState(null);
+  const [createLoading, setCreateLoading] = useState(false);
 
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
@@ -50,6 +53,7 @@ const AdminDashboard = () => {
   // ====================================
 
   const CreateAccountHandler = async (data) => {
+    setCreateLoading(true);
     try {
       const response = await createInternsProfileAPi(data);
       if (response) {
@@ -58,8 +62,30 @@ const AdminDashboard = () => {
     } catch (error) {
       toast.error("Intern is not register", { theme: "dark" })
       console.log("error while create profile", error);
+    } finally {
+      setCreateLoading(false);
+      reset();
     }
   }
+
+  // ===================================
+  // Fetching all the interns profile
+  // ====================================
+
+  useEffect(() => {
+    const fetchAllInterProfile = async () => {
+      try {
+        const response = await fetchingAllInternsProfileApi();
+        if (response) {
+          setInternsProfile(response.internsProfile)
+        }
+      } catch (error) {
+        console.log("error while fetching interns profile", error);
+
+      }
+    }
+    fetchAllInterProfile();
+  }, [internsProfile])
 
   // =========================
   // Loading task 
@@ -74,7 +100,7 @@ const AdminDashboard = () => {
   }
 
   return (
-    <section className='min-h-screen md:min-h-full w-full flex flex-col items-center justify-center gap-10 bg-[#1A2546] md:p-10' >
+    <section className='min-h-screen md:min-h-full w-full flex flex-col items-center justify-center gap-10 bg-[#1A2546] md:p-5' >
 
       {/* All interns task showing div */}
       <section className='w-full flex flex-col items-center justify-center space-y-2 border-2 border-sky-500 rounded-sm shadow-lg shadow-sky-500 bg-slate-900/50  ' >
@@ -187,10 +213,60 @@ const AdminDashboard = () => {
                 {errors.endingDate && (<p className='text-sm text-red-500' >{errors.endingDate.message}</p>)}
               </div>
             </div>
-
-            <button type='submit' className='w-full bg-slate-900/50 rounded-lg border-2 border-sky-500 shadow-lg shadow-sky-500 p-2 text-white hover:bg-sky-500 hover:scale-[0.9] transition' >Create Intern Account</button>
-
+            <button disabled={createLoading} type='submit' className='w-full bg-slate-900/50 rounded-lg border-2 border-sky-500 shadow-lg shadow-sky-500 p-2 text-white hover:bg-sky-500 hover:scale-[0.9] transition' >
+              {createLoading ? "....Creating Intern account" : "Create Intern Account"}
+            </button>
           </form>
+        </div>
+      </section>
+
+      {/* showing all interns profile details */}
+      <section className='min-h-full w-full flex flex-col items-center justify-center' >
+
+        <div className='w-full flex flex-col items-center justify-center bg-slate-900/50 border-2 border-sky-500 rounded-sm shadow-lg shadow-sky-500 md:p-4' >
+
+          {/* Heading */}
+          <h1 className='text-white font4 ' >Interns Profile data</h1>
+
+          {/* main div interns detail showing */}
+
+          {internsProfile.length === 0 ? (
+            <section className='w-full flex flex-col items-center jsutify-center   bg-slate-900/50' >
+              <h1 className='text-white text-sm md:text-2xl font1' >---No Interns Data Found---</h1>
+            </section>
+          ) : (
+            <section className='w-full' >
+              <table className='border-1 rounded' >
+                <thead>
+                  <tr>
+                    <th className='border-2 text-[9px] md:text-lg text-white font1 p-0 ' >Name</th>
+                    <th className='border-2 text-[9px] md:text-lg text-white font1 p-0 ' >Email</th>
+                    <th className='border-2 text-[9px] md:text-lg text-white font1 p-0 ' >Password</th>
+                    <th className='border-2 text-[9px] md:text-lg text-white font1 p-0 ' >Full Details</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {internsProfile.map((interns, index) => (
+                    <tr className='' key={interns._id} >
+                      <td className='border-2 text-white text-[7px] w-full font1 p-1 md:p-4 md:text-sm overflow-auto whitespace-normal' >
+                        <h1>{interns.fullName} <Copy onClick={()=>{navigator.clipboard.writeText(interns.fullName); alert("Full name copy successfully")}} className='hover:text-emerald-500 hover:scale-[1.1] transition' size={13} /> </h1>
+                      </td>
+                      <td className='border-2 text-white text-[7px] w-full font1 p-1 md:p-4 md:text-sm overflow-auto whitespace-normal' >
+                        <h1>{interns.email} <Copy onClick={()=>{navigator.clipboard.writeText(interns.email); alert("Email copy successfully")}} className='hover:text-emerald-500 hover:scale-[1.1] transition' size={13} /> </h1>
+                      </td>
+                      <td className='border-2 text-white text-[7px] w-full font1 p-1 md:p-4 md:text-sm overflow-auto whitespace-normal' >
+                        <h1>{interns.password} <Copy onClick={()=>{navigator.clipboard.writeText(interns.password); alert("Password copy successfully")}} className='hover:text-emerald-500 hover:scale-[1.1] transition' size={13} /> </h1>
+                      </td>
+                      <td className='border-2 text-white text-[7px] w-full font1 p-1 md:p-4 md:text-sm overflow-auto whitespace-normal' >
+                        <h1 className='text-emerald-500' >view</h1>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </section>
+          )}
+
 
         </div>
       </section>

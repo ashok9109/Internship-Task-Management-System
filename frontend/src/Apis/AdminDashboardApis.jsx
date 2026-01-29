@@ -29,4 +29,19 @@ export const createInternsProfileAPi = async(data)=>{
     } catch (error) {
         throw error.response?.data || error;
     }
-}
+};
+
+// ===================================
+// Fetching all interns profile api
+// ====================================
+
+export const fetchingAllInternsProfileApi = async()=>{
+    try {
+        const response = await axiosintance.get("/api/admin/dashboard/fetch-all-interns");
+      if(response){
+        return response.data;
+      }
+    } catch (error) {
+        throw error.response?.data || error;
+    }
+};
