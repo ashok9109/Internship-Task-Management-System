@@ -1,4 +1,4 @@
-import { Album, BackpackIcon, BookCheck, Crown, Home, UploadCloud} from "lucide-react";
+import { Album, BackpackIcon, BookCheck, Crown, Home, UploadCloud } from "lucide-react";
 import { NavLink as RouterNavLink, useLocation, useNavigate, } from "react-router";
 import { useDispatch } from 'react-redux';
 import logo from '../../images/hd-logo.png';
@@ -16,7 +16,7 @@ const navlink = [
   { label: "My Courses", icon: BookCheck, to: "/home/my-courses" },
   { label: "My Internship", icon: Album, to: "/home/my-internship" },
   { label: "Admin Dashboard", icon: BackpackIcon, to: "/home/admin-dashoard" },
-  {label:"Admin Task Uploader", icon:UploadCloud, to:"/home/admin-task-uploader"}
+  { label: "Admin Task Uploader", icon: UploadCloud, to: "/home/admin-task-uploader" }
 ]
 
 const NavLink = () => {
@@ -31,19 +31,13 @@ const NavLink = () => {
   const logouthandler = async () => {
     try {
       const response = await axiosintance.get("/api/auth/logout");
-      toast.success("Logout Successfully", {
-        style: {
-          color: "#FFFFFF",
-          background: "#0F172B"
-        }
-      });
       navigate("/")
       if (response) {
         console.log("user is logout")
         dispatch(removeUser());
       }
     } catch (error) {
-      throw error.response?.data || error
+     console.log("This is error for logout", error);
     }
   }
 
@@ -61,30 +55,19 @@ const NavLink = () => {
         <div className='w-full flex flex-col items-start justify-center gap-10 text-xl font-bold' >
           {navlink.map(({ label, icon: Icon, to }, Idx) => {
             return (
-              <RouterNavLink
-                key={label}
-                to={to}
-                className={({ isActive }) => `${to === location.pathname ? "border-b-2 border-[#04B0F0] text-[#04B0F0]" : "text-[#04B0F0]"}`}
-              >
-                <motion.div whileHover={{ background: "#04B0F0", color: "#0F172B", padding: "4px 10px", borderRadius: "10px" }}
-                  className='flex  gap-4 hover:scale-[1.1] transition space-y-5' >
+              <RouterNavLink key={label} to={to}
+                className={({ isActive }) => `${to === location.pathname ? "border-b-2 border-[#04B0F0] text-[#04B0F0]" : "text-[#04B0F0]"}`} >
+                <div className='flex gap-4 hover:scale-[1.1] transition space-y-5' >
                   <Icon className="text-[#424242] " />
-                  <motion.span whileHover={{ color: "#0F172B" }}
-                    className=""
-                  >
-                    {label}</motion.span>
-                </motion.div>
+                  <span>{label}</span>
+                </div>
               </RouterNavLink>
             )
           })}
         </div>
-
+        
         {/* logout button */}
-        <div className="text-center mt-5" >
-          <motion.button
-            whileHover={{ background: "red", color: "white", padding: "7px 14px", borderRadius: "10px" }}
-            onClick={logouthandler} className='text-[#424242] font-bold text-2xl hover:scale-[1.1]' >Logout</motion.button>
-        </div>
+        <button onClick={logouthandler} className='text-[#424242] font-bold text-2xl' >Logout</button>
       </section>
     </>
   )

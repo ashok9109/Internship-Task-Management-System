@@ -82,138 +82,93 @@ const AdminTaskUploader = () => {
     }
 
     return (
-        <section className='min-h-full w-full bg-[#1A2546]' >
-
-            {/* admin panel Heading */}
-            <motion.div initial={{ x: -200 }} animate={{ x: 0 }}
-                className='w-full max-w-5xl font-bold p-5 flex flex-col items-center justify-center gap-2' >
-                <h1 className='font-bold text-sm text-sky-500 font4 md:text-2xl hover:scale-[1.1] transition'>🌐 Admin Task Management System</h1>
-                <p className='text-sm text-gray-500 font1'>Admin panel for upload task and manage task</p>
-            </motion.div>
+        <section className='min-h-screen md:min-h-full w-full text-center bg-[#1A2546]' >
+            <h1 className='text-2xl text-sky-500 font4 p-4'>🌐 Admin Task Management System</h1>
 
             {/*page1 task details uploading page */}
-            <section className='min-h-full w-full flex items-center justify-center p-4' >
-                <div className='max-w-4xl flex flex-col items-center justify-center p-5 bg-slate-900/50 rounded-sm border-2 border-sky-500 shadow-lg shadow-sky-500' >
-
-                    {/* page1-heading */}
-                    <motion.div initial={{ y: -200 }} animate={{ y: 0 }}
-                        className='w-full max-w-5xl font-bold p-5 flex flex-col items-center justify-center gap-2' >
-                        <h1 className='font-bold text-sm text-sky-500 font7 md:text-2xl hover:scale-[1.1] transition'> Task Details Requirements</h1>
-                        <p className='text-sm text-slate-400 font5'>Fill all fields in deep explaintions are required and these details showing in interns task </p>
-                    </motion.div>
-
-                    {/* label and input fields */}
-                    <form onSubmit={handleSubmit(taskDetailsHandler)} className='w-full p-4' >
+            <section className='w-full flex items-center justify-center' >
+                <div className='max-w-4xl flex flex-col items-center justify-center bg-slate-900/50 text-white shadow-lg shadow-sky-500 border-2 border-sky-500 rounded p-2' >
+                    <h1> Task Details Requirements</h1>
+                    <form onSubmit={handleSubmit(taskDetailsHandler)} className='w-full' >
 
                         {/* title input and task number input*/}
-                        <div className='w-full flex items-center justify-between gap-5 p-4' >
-                            <motion.div initial={{ x: -150 }} animate={{ x: 0 }}
-                                className='w-full' >
-                                <label className='text-sm font-bold text-sky-500' > Task-Title </label>
-                                <input {...register("title", { required: "Title is required" })}
-                                    className={`w-full outline-0 text-white border-2 border-dashed p-2 hover:scale-[0.9] transition ${errors.title ? "border-red-500" : "border-sky-500"}`}
-                                    placeholder='Week 1: complete web development project'
-                                    type="text" id='title' name='title' />
-                                {errors.title && (<p className='text-sm text-red-500' >{errors.title.message}</p>)}
-                            </motion.div>
-
-                            <motion.div initial={{ x: 150 }} animate={{ x: 0 }}
-                                className='w-full' >
-                                <label className='text-sm font-bold text-sky-500' >Task-Number</label>
-                                <input {...register("taskNumber", { required: "Task number is very importants" })}
-                                    className={`w-full outline-0 text-white border-2 border-dashed p-2 hover:scale-[0.9] transition ${errors.taskNumber ? "border-red-500" : "border-sky-500"}`}
+                        <div className='w-full flex flex-col md:flex-row items-center justify-between gap-5 p-4' >
+                            <div className='w-full' >
+                                <label>Task-Title </label>
+                                <input {...register("title", { required: "Required" })}
+                                    className={`w-full text-white border-2 border-dashed p-2 ${errors.title ? "border-red-500" : "border-sky-500"}`}
+                                    placeholder='Week 1: Task' type="text" />
+                            </div>
+                            <div className='w-full' >
+                                <label>Task-Number</label>
+                                <input {...register("taskNumber", { required: "Required" })}
+                                    className={`w-full text-white border-2 border-dashed p-2 ${errors.taskNumber ? "border-red-500" : "border-sky-500"}`}
                                     placeholder='Task-01 [Add the unique]'
                                     type="text" />
-                                {errors.taskNumber && (<p className='text-red-500 text-sm' >{errors.taskNumber.message}</p>)}
-                            </motion.div>
+                            </div>
                         </div>
 
                         {/* project title & Technical Requriments */}
-                        <div className='w-full flex items-center justify-between gap-5 p-4' >
-                            <motion.div initial={{ x: -150 }} animate={{ x: 0 }}
-                                className='w-full' >
-                                <label className='text-sm font-bold text-sky-500' >Project-Title</label>
-                                <input {...register("projectTitle", { required: "Project title is required" })}
-                                    className={`w-full outline-0 text-white border-2 border-dashed p-2 hover:scale-[0.9] transition ${errors.projectTitle ? "border-red-500" : "border-sky-500"} `}
-                                    placeholder='Add the project title'
-                                    type="text" id='projectTitle' name='projectTitle' />
-                                {errors.projectTitle && (<p className='text-sm text-red-500' >{errors.projectTitle.message}</p>)}
-                            </motion.div>
-
-                            <motion.div initial={{ x: 150 }} animate={{ x: 0 }}
-                                className='w-full' >
-                                <label className='text-sm font-bold text-sky-500' >Technical-Requirements</label>
-                                <input {...register("technicalRequirements", { required: "Technical Requirements is required" })}
-                                    className={`w-full outline-0 text-white border-2 border-dashed p-2 hover:scale-[0.9] transition ${errors.technicalRequirements ? "border-red-500" : "border-sky-500"}`}
-                                    placeholder='Add the task structure'
-                                    type="text" />
-                                {errors.technicalRequirements && (<p className='text-red-500 text-sm' >{errors.technicalRequirements.message}</p>)}
-                            </motion.div>
+                        <div className='w-full flex flex-col md:flex-row items-center justify-between gap-5 p-4' >
+                            <div className='w-full' >
+                                <label>Project-Title</label>
+                                <input {...register("projectTitle", { required: "Required" })}
+                                    className={`w-full text-white border-2 border-dashed p-2 ${errors.projectTitle ? "border-red-500" : "border-sky-500"} `}
+                                    placeholder='Add the project title' type="text" />
+                            </div>
+                            <div className='w-full' >
+                                <label>Technical-Requirements</label>
+                                <input {...register("technicalRequirements", { required: "Rrequired" })}
+                                    className={`w-full text-white border-2 border-dashed p-2  ${errors.technicalRequirements ? "border-red-500" : "border-sky-500"}`}
+                                    placeholder='Add the task structure' type="text" />
+                            </div>
                         </div>
 
                         {/* theory concepts & hand of practices */}
-                        <div className='w-full flex items-center justify-between gap-5 p-4' >
-                            <motion.div initial={{ x: -150 }} animate={{ x: 0 }}
-                                className='w-full' >
-                                <label className='text-sm font-bold text-sky-500' >Theory Concepts</label>
-                                <input {...register("theoryConcepts", { required: "Theory concepts is required" })}
-                                    className={`w-full outline-0 text-white border-2 border-dashed p-2 hover:scale-[0.9] transition ${errors.theoryConcepts ? "border-red-500" : "border-sky-500"}`}
-                                    placeholder='Add the points of task'
-                                    type="text" id='theoryConcepts' name='theoryConcepts' />
-                                {errors.theoryConcepts && (<p className='text-red-500 text-sm' >{errors.theoryConcepts.message}</p>)}
-                            </motion.div>
-
-                            <motion.div initial={{ x: 150 }} animate={{ x: 0 }}
-                                className='w-full' >
-                                <label className='text-sm font-bold text-sky-500' >Hands-On-Practice</label>
-                                <input {...register("handOnPractice", { required: "Hand on practice is required" })}
-                                    className={`w-full outline-0 text-white border-2 border-dashed p-2 hover:scale-[0.9] transition ${errors.handOnPractice ? "border-red-500" : "border-sky-500"}`}
-                                    placeholder='Points that interns follow'
-                                    type="text" id='handOnPractice' name='handOnPractice' />
-                                {errors.handOnPractice && (<p className='text-red-500 text-sm' >{errors.handOnPractice.message}</p>)}
-                            </motion.div>
+                        <div className='w-full flex flex-col md:flex-row items-center justify-between gap-5 p-4' >
+                            <div className='w-full' >
+                                <label>Theory Concepts</label>
+                                <input {...register("theoryConcepts", { required: "Required" })}
+                                    className={`w-full text-white border-2 border-dashed p-2 ${errors.theoryConcepts ? "border-red-500" : "border-sky-500"}`}
+                                    placeholder='Add the points of task' type="text" />
+                            </div>
+                            <div className='w-full' >
+                                <label>Hands-On-Practice</label>
+                                <input {...register("handOnPractice", { required: "Required" })}
+                                    className={`w-full text-white border-2 border-dashed p-2 ${errors.handOnPractice ? "border-red-500" : "border-sky-500"}`}
+                                    placeholder='Points that interns follow' type="text"/>
+                            </div>
                         </div>
 
                         {/* submission requirements & Tips and resources */}
-                        <div className='w-full flex items-center justify-between gap-5 p-4' >
-                            <motion.div initial={{ x: -150 }} animate={{ x: 0 }}
-                                className='w-full' >
-                                <label className='text-sm font-bold text-sky-500' >Submission-Requirements</label>
-                                <input {...register("submissions", { required: "Submission details is required" })}
-                                    className={`w-full outline-0 text-white border-2 border-dashed p-2 hover:scale-[0.9] transition ${errors.submissions ? "border-red-500" : "border-sky-500"}`}
-                                    placeholder='Add the submission points'
-                                    type="text" id='submissions' name='submissions' />
-                                {errors.submissions && (<p className='text-red-500 text-sm' >{errors.submissions.message}</p>)}
-                            </motion.div>
-
-                            <motion.div initial={{ x: 150 }} animate={{ x: 0 }}
-                                className='w-full' >
-                                <label className='text-sm font-bold text-sky-500' >Tip & Resources</label>
-                                <input {...register("tipResources", { required: "Tips and resources is required" })}
-                                    className={`w-full outline-0 text-white border-2 border-dashed p-2 hover:scale-[0.9] transition ${errors.tipResources ? "border-red-500" : "border-sky-500"}`}
-                                    placeholder='Task-01 [Add the unique]'
-                                    type="text" />
-                                {errors.tipResources && (<p className='text-red-500 text-sm' >{errors.tipResources.message}</p>)}
-                            </motion.div>
+                        <div className='w-full flex flex-col md:flex-row items-center justify-between gap-5 p-4' >
+                            <div className='w-full' >
+                                <label>Submission-Requirements</label>
+                                <input {...register("submissions", { required: "Required" })}
+                                    className={`w-full text-white border-2 border-dashed p-2 ${errors.submissions ? "border-red-500" : "border-sky-500"}`}
+                                    placeholder='Add the submission points' type="text" />
+                            </div>
+                            <div className='w-full' >
+                                <label>Tip & Resources</label>
+                                <input {...register("tipResources", { required: "required" })}
+                                    className={`w-full text-white border-2 border-dashed p-2 ${errors.tipResources ? "border-red-500" : "border-sky-500"}`}
+                                    placeholder='Task-01 [Add the unique]' type="text" />
+                            </div>
                         </div>
 
                         {/* step by setp guide field */}
                         <div className='w-full p-4' >
-                            <label className='text-sm font-bold text-sky-500' >Step By Step Guide</label>
-                            <textarea {...register("stepByStep", { required: "Step by step guide is required" })}
-                                className={`w-full outline-0 text-white border-2 border-dashed p-2 hover:scale-[0.9] transition ${errors.stepByStep ? "border-red-500" : "border-sky-500"}`}
-                                placeholder='Explain the task in detail'
-                                rows={5} >
+                            <label>Step By Step Guide</label>
+                            <textarea {...register("stepByStep", { required: "Required" })}
+                                className={`w-full text-white border-2 border-dashed p-2 ${errors.stepByStep ? "border-red-500" : "border-sky-500"}`}
+                                placeholder='Explain the task in detail' rows={5} >
                             </textarea>
-                            {errors.stepByStep && (<p className='text-red-500 text-sm' >{errors.stepByStep.message}</p>)}
                         </div>
-
-                        <motion.button whileHover={{ background: "#141D39", color: "white" }} disabled={taskDetailsLoading}
-                            className='w-full bg-sky-500 rounded py-2 shadow-sm shadow-sky-500' type='submit' >
+                        <button disabled={taskDetailsLoading}
+                            className='w-full bg-sky-500 rounded py-2 text-black' type='submit' >
                             {taskDetailsLoading ? "....Creating Task Just Wait" : "Create Task"}
-                        </motion.button>
+                        </button>
                     </form>
-
                 </div>
             </section>
 
@@ -243,10 +198,10 @@ const AdminTaskUploader = () => {
                                 <input onChange={(e) => setImageUploadFile(e.target.files[0] || null)} className='hidden' accept='.xlsx,.xlx,.csv' type="file" />
                             </label>
 
-                            <motion.button whileHover={{ background: "#141D39", color: "white" }} disabled={uploadImageLoading}
+                            <button disabled={uploadImageLoading}
                                 type='submit' className='bg-sky-500 rounded py-2 shadow-sm shadow-sky-500' >
                                 {uploadImageLoading ? "....Uploading Image just Wait" : "Upload Image"}
-                            </motion.button>
+                            </button>
                         </form>
                     </div>
 
@@ -275,10 +230,10 @@ const AdminTaskUploader = () => {
                                 <input onChange={(e) => setTaskCode(e.target.value)} value={taskCode} className='h-full w-full text-white p-6 outline-0' placeholder='Add Task Code' type="text" />
                             </label>
 
-                            <motion.button whileHover={{ background: "#141D39", color: "white" }} disabled={taskCodeLoading}
+                            <button disabled={taskCodeLoading}
                                 type='submit' className='bg-sky-500 rounded py-2 shadow-sm shadow-sky-500' >
                                 {taskCodeLoading ? "Upoading code just wait" : "Upload Code"}
-                            </motion.button>
+                            </button>
                         </form>
                     </div>
                 </div>

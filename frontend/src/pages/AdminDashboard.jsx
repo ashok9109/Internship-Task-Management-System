@@ -105,7 +105,7 @@ const AdminDashboard = () => {
         <h1>.........Loading Interns Profile </h1>
       </div>
     )
-  }
+  };
 
   return (
     <section className='min-h-screen md:min-h-full w-full flex flex-col items-center justify-center gap-10 bg-[#1A2546] md:p-5' >
