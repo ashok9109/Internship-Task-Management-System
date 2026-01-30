@@ -1,19 +1,19 @@
-import { motion } from "motion/react"
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { addCodeTaskApi, createTaskDetailsApi } from '../Apis/AdminTaskUploaderApis'
-import { toast } from 'react-toastify';
 
 const AdminTaskUploader = () => {
 
-    // ===========loadings===========
+    // ===========================loadings&Errors ======================
     const [taskDetailsLoading, setTaskDetailsLoading] = useState(false);
     const [uploadImageLoading, setUploadImageLoading] = useState(false);
     const [taskCodeLoading, setTaskCodeLoading] = useState(false);
+    const [taskDetailsServerMsg, setTaskDetailsServerMsg] = useState("");
+    const [taskCodeServerMsg, setTaskCodeServerMsg] = useState("")
 
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
-    // ===============state-for-values=====================
+    // ===============state-for-values========================
     const [imageTaskNumber, setImageTaskNumber] = useState("");
     const [imageUploadFile, setImageUploadFile] = useState(null);
     const [codeTaskNumber, setCodeTaskNumber] = useState("");
@@ -26,12 +26,12 @@ const AdminTaskUploader = () => {
         try {
             const response = await createTaskDetailsApi(data);
             if (response) {
-                toast.success("Task Created successfully", { style: { color: "#FFFFFF", background: "#0F172B" } })
+                setTaskDetailsServerMsg("✅Task Created Successfully✅");
             }
 
         } catch (error) {
             console.log("This is error while create task", error);
-            toast.error(error.message || "Task not created", { style: { background: "#000000", color: "#FFFFFF", } })
+            setTaskDetailsServerMsg("❌Task Not created check all fields and try again❌");
         } finally {
             setTaskDetailsLoading(false);
             reset();
@@ -71,10 +71,11 @@ const AdminTaskUploader = () => {
         try {
             const response = await addCodeTaskApi({ taskNumber: codeTaskNumber, sampleOutput: taskCode });
             if (response) {
-                toast.success("Task Created successfully", { style: { color: "#FFFFFF", background: "#0F172B" } })
+                setTaskCodeServerMsg("✅Code uploaded Successfully✅")
             }
         } catch (error) {
-            toast.error(error.message || "Task not created", { style: { background: "#000000", color: "#FFFFFF", } })
+            console.log("error while uploading code", error);
+            setTaskCodeServerMsg("❌Code is not Uploaded ❌")
         } finally {
             setTaskCodeLoading(false);
             reset();
@@ -136,7 +137,7 @@ const AdminTaskUploader = () => {
                                 <label>Hands-On-Practice</label>
                                 <input {...register("handOnPractice", { required: "Required" })}
                                     className={`w-full text-white border-2 border-dashed p-2 ${errors.handOnPractice ? "border-red-500" : "border-sky-500"}`}
-                                    placeholder='Points that interns follow' type="text"/>
+                                    placeholder='Points that interns follow' type="text" />
                             </div>
                         </div>
 
@@ -164,6 +165,10 @@ const AdminTaskUploader = () => {
                                 placeholder='Explain the task in detail' rows={5} >
                             </textarea>
                         </div>
+
+                        {/* Status showing */}
+                        {taskDetailsServerMsg && (<div>{taskDetailsServerMsg}</div>)}
+
                         <button disabled={taskDetailsLoading}
                             className='w-full bg-sky-500 rounded py-2 text-white' type='submit' >
                             {taskDetailsLoading ? "....Creating Task Just Wait" : "Create Task"}
@@ -218,6 +223,9 @@ const AdminTaskUploader = () => {
                             <label className='w-full border-2 flex itmes-center justify-center border-sky-500 border-dashed rounded-sm ' >
                                 <input onChange={(e) => setTaskCode(e.target.value)} value={taskCode} className='h-full w-full text-white p-6 outline-0' placeholder='Add Task Code' type="text" />
                             </label>
+
+                            {/* status showing  */}
+                            {taskCodeServerMsg && (<div>{taskCodeServerMsg}</div>)}
 
                             <button disabled={taskCodeLoading}
                                 type='submit' className='bg-sky-500 rounded py-2' >
