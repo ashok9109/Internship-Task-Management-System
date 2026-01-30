@@ -97,6 +97,14 @@ const AdminDashboard = () => {
         <h1>......Loading all task</h1>
       </div>
     )
+  };
+
+  if(!internsProfile){
+    return (
+      <div className='min-h-screen w-full flex flex-col items-center justify-center bg-[#1A2546]' >
+        <h1>.........Loading Interns Profile </h1>
+      </div>
+    )
   }
 
   return (
