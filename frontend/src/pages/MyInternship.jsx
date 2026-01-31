@@ -2,7 +2,6 @@ import { useState } from 'react'
 import bg from '../images/mern-stack-image.png'
 import { useEffect } from 'react';
 import { getAllTaskApi } from '../Apis/AdminTaskUploaderApis';
-import { Upload } from "lucide-react";
 import { Link } from 'react-router';
 
 
@@ -26,22 +25,21 @@ const MyInternship = () => {
   }, [])
 
 
-
   return (
     <section className='min-h-full w-full flex flex-col items-center justify-center bg-[#1A2546]' >
 
       {/* page1 */}
-      <section className='w-full flex flex-col gap-5 md:flex-row items-center justify-center p-5 ' >
+      {/* <section className='w-full flex flex-col gap-5 md:flex-row items-center justify-center p-5 ' >
         <div><img className='w-full' src={bg} alt="mern stack image" /></div>
         <div className='h- flex flex-col items-center justify-center bg-slate-900/50 text-white border-2 rounded-lg shadow-lg shadow-sky-500 border-sky-500 p-5 gap-3' >
           <h1 className='text-sm text-bold font4 text-sky-500' >MERN Stack Development</h1>
           <p className='font1 ' >This projects focuses on creating a comprehensive system that enables users to complete their projects within specified timelines while providing seamless file management capabilities. The system allows users to check the project documentation in PDF format and upload completed project as ZIP files, all wrapped in an elegant and responsive user interface</p>
           <h2 className='font1' >Project-06</h2>
         </div>
-      </section>
+      </section> */}
 
       {/* page2 */}
-      <section className='w-full p-5' >
+      {/* <section className='w-full p-5' >
         <div className='w-full flex flex-col space-y-4 md:p-5  bg-slate-900/50 rounded-lg border-2 border-sky-500 shadow-lg shadow-sky-500 text-white p-2' >
           <h1 className='text-sky-500 text-sm font-bold' >Node.js Backend Best Practices</h1>
           <div>
@@ -84,21 +82,21 @@ const MyInternship = () => {
             <p>Avoid blocking the event loop with heavy sync tasks.</p>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Task showing section */}
-      <section className='min-h-screen w-full md:p-5 flex items-center justify-center ' >
+      <section className='min-h-screen w-full' >
         <div className='min-h-screen md:h-full w-full flex flex-col items-center justify-center bg-slate-900/50 border-2 border-sky-500 rounded-lg shadow-lg shadow-sky-500 p-2 ' >
 
           {/* Heading */}
           <h1 className='text-white font4 md:text-3xl' >INTERNSHIP TASK</h1>
           <div className='w-full md:p-7 ' >
             {tasks?.map((task) => (
-              <div className='w-full font1 border-2 border-sky-500 shadow-lg shadow-sky-500 rounded-sm flex flex-col p-4 mt-5 md:mt-10 hover:scale-[0.9] transition' key={task._id}>
+              <div className='w-full font1 border-2 border-sky-500 shadow-lg shadow-sky-500 rounded-sm flex flex-col p-4 mt-5 md:mt-10' key={task._id}>
                 <div className='w-full flex items-center justify-between' >
                   <h1 className='text-sm text-gray-400 font-bold font1'>{task.title}</h1>
                   <Link to={`/home/task-details/${task._id}`} >
-                    <h1 className='text-white hover:bg-white hover:text-black rounded-lg p-2' >view Task <Upload /></h1>
+                    <h1 className='text-white hover:bg-white hover:text-black rounded-lg p-2' transition>view Task</h1>
                   </Link>
                 </div>
               </div>

@@ -20,7 +20,8 @@ const TaskStatusBadge = ({ status }) => {
             {statusText[status]}
         </div>
     );
-;}
+    ;
+}
 
 const TaskDetails = () => {
 
@@ -61,7 +62,7 @@ const TaskDetails = () => {
         setLoading(true);
 
         if (!gitLink) {
-            alert("Git link are required");
+            alert("Git link is required");
         }
 
         if (!docsLink) {
@@ -121,103 +122,77 @@ const TaskDetails = () => {
 
     if (!task) {
         return (
-            <div className='min-h-screen flex flex-col items-center justify-center' >
-                <h1 className='text-black text-2xl' >.....Loading task</h1>
+            <div className='min-h-screen bg-[#1A2537]' >
+                <h1>.....Loading task</h1>
             </div>
         )
     }
 
 
     return (
-        <section className='min-h-full w-full overflow-hidden bg-[#1A2546] flex flex-col items-center justify-center p-5 md:p-10' >
-            <section className='h-full w-full flex flex-col space-y-4 bg-[#1A2537] border-2 border-sky-500 md:p-10 rounded-lg shadow-lg shadow-sky-500  p-3' >
+        <section className='min-h-full w-full bg-[#1A2546] p-5 md:p-10' >
+
+            {/* Task Details Showing */}
+            <section className='h-full w-full flex flex-col space-y-4 bg-[#1A2537] border-2 text-white border-sky-500 md:p-10 rounded-lg shadow-lg shadow-sky-500  p-3' >
                 <h1 className='text-sky-500 font-bold font4' >{task.title}</h1>
 
-                {/* Theory concepts div */}
-                <div className='flex flex-col gap-2' >
-                    <h1 className='text-white font1' >📚 Theory Concepts: </h1>
-                    <p className='text-white font1 bg-slate-900/70 md:p-10 rounded-sm' >{task.theoryConcepts}</p>
+                <h1>📚 Theory Concepts: </h1>
+                <p className='bg-slate-900/70 p-7' >{task.theoryConcepts}</p>
+
+                <h1>🛠️ Hands-On Practice: </h1>
+                <p className='bg-slate-900/70 p-7' >{task.handOnPractice}</p>
+
+                <h1 className='text-sky-500 font4' >{task.projectTitle}</h1>
+
+                <h1>🛠️ Technical Requirements: </h1>
+                <p className='bg-slate-900/70 p-7' >{task.technicalRequirements}</p>
+
+                <div className='flex flex-col gap-2 bg-slate-900/70 p-7' >
+                    <h1>📋 Step-by-Step Guide:</h1>
+                    <p className='bg-slate-900/70 p-7' >{task.stepByStep}</p>
                 </div>
 
-                {/* Hand on practice div */}
-                <div className='flex flex-col gap-2' >
-                    <h1 className='text-white font1' >🛠️ Hands-On Practice: </h1>
-                    <p className='text-white font1 bg-slate-900/70 md:p-10 rounded-sm' >{task.handOnPractice}</p>
-                </div>
+                <h1>💻 Sample Code:</h1>
+                <pre className='text-green-500  bg-slate-900/70 p-7 w-full overflow-x-auto relative' >
+                    <code>{task.sampleOutput}</code>
+                </pre>
 
-                {/* Project title */}
-                <div className='text-sky-500 font4 font-bold' >
-                    <h1>{task.projectTitle}</h1>
-                </div>
+                <h1>💡 Tips & Resources:</h1>
+                <p className='bg-slate-900/70 p-7' >{task.tipResources}</p>
 
-                {/* Technical requirements div */}
-                <div className='flex flex-col gap-2' >
-                    <h1 className='text-white font1' >🛠️ Technical Requirements: </h1>
-                    <p className='text-white font1 bg-slate-900/70 md:p-10 rounded-sm' >{task.technicalRequirements}</p>
-                </div>
-
-                {/* Project description */}
-                <div className='flex flex-col gap-2 text-white font1 bg-slate-900/70 md:p-10 rounded-sm' >
-                    <h1 className='text-white font1'  >📋 Step-by-Step Guide:</h1>
-                    <p className='text-white font1 bg-slate-900/70 md:p-10 rounded-sm' >{task.stepByStep}</p>
-                </div>
-
-                {/* sample code */}
-                <div className='w-full md:w-full' >
-                    <h1 className='text-white font1'  >💻 Sample Code:</h1>
-                    <pre className='text-green-500 font1 bg-slate-900/70 md:p-10 w-full rounded-sm overflow-x-auto relative' >
-                        <code className='' >{task.sampleOutput}</code>
-                    </pre>
-                </div>
-
-                {/* Tips and resources div */}
-                <div className='flex flex-col gap-2' >
-                    <h1 className='text-white font1' >💡 Tips & Resources:</h1>
-                    <p className='text-white font1 bg-slate-900/70 md:p-10 rounded-sm' >{task.tipResources}</p>
-                </div>
-
-                <div className='flex flex-col gap-2' >
-                    <h1 className='text-white font1' >📤 Submission Requirements:</h1>
-                    <p className='text-white font1 md:p-5' >{task.submissions}</p>
-                </div>
+                <h1>📤 Submission Requirements:</h1>
+                <p className='text-white p-7' >{task.submissions}</p>
 
                 {/* Task submiting fields */}
                 <section className='w-full' >
                     {!submitted ? (
                         <div className='flex flex-col items-center justify-center' >
-                            <h1 className='text-sky-500 font4 font-bold md:text-2xl' > 📤 Submit Your Task</h1>
-                            <form onSubmit={taskHandlerSubmit} className='w-full flex flex-col gap-4 border-2 border-sky-500 shadow-lg shadow-sky-500 rounded-lg p-5' >
+                            <h1 className='text-sky-500 font4 md:text-2xl' > 📤 Submit Your Task</h1>
+                            <form onSubmit={taskHandlerSubmit} className='w-full flex flex-col gap-4 text-white border-2 border-sky-500 shadow-lg shadow-sky-500 p-5' >
 
                                 {/* git hub input */}
-                                <div className='flex flex-col gap-5' >
-                                    <h1 className='text-white text-sm font-bold font1' >GitHub Repository URL *</h1>
-                                    <input value={gitLink} onChange={(e) => setGitLink(e.target.value)} className='text-white border-2 border-white rounded p-2 bg-slate-900/70 rounded-lg' placeholder='https://github.com/yourusername/repo' type="url" />
-                                    <h1 className='font5' >Provide the link to your GitHub repository containing the project code</h1>
-                                </div>
+                                <h1>GitHub Repository URL *</h1>
+                                <input value={gitLink} onChange={(e) => setGitLink(e.target.value)} className='text-white border-2 border-white  p-2 bg-slate-900/70 rounded-lg' placeholder='https://github.com/yourusername/repo' type="url" />
+                                <h1>Provide the link to your GitHub repository containing the project code</h1>
 
                                 {/* documentation input */}
-                                <div className='flex flex-col gap-5' >
-                                    <h1 className='text-white text-sm font-bold font1' >Documentation URL *</h1>
-                                    <input value={docsLink} onChange={(e) => setDocsLink(e.target.value)} className='text-white border-2 border-white rounded p-2 bg-slate-900/70 rounded-lg' placeholder='https://docs.google.com/documentation' type="url" />
-                                    <h3 className='font5' >Provide link to documentation (Google Docs, PDF, or any shareable link). Must include: Project description, setup instructions, screenshots, and explanations as specified above.</h3>
-                                </div>
+                                <h1>Documentation URL *</h1>
+                                <input value={docsLink} onChange={(e) => setDocsLink(e.target.value)} className='border-2 border-white p-2 bg-slate-900/70 rounded-lg' placeholder='https://docs.google.com/documentation' type="url" />
+                                <h3>Provide link to documentation (Google Docs, PDF, or any shareable link). Must include: Project description, setup instructions, screenshots, and explanations as specified above.</h3>
 
                                 {/* Remark input */}
-                                <div>
-                                    <h1 className='text-white text-sm font-bold font1'  >Remarks *</h1>
-                                    <textarea value={remarks} onChange={(e) => setRemarks(e.target.value)} placeholder='Any additional comments or notes about your submission...' className='w-full text-white border-2 border-white rounded p-2 bg-slate-900/70 rounded-lg' ></textarea>
-                                    <h3 className='font5' >You can add any comments about challenges faced, features implemented, or additional information.</h3>
-                                </div>
+                                <h1>Remarks *</h1>
+                                <textarea value={remarks} onChange={(e) => setRemarks(e.target.value)} placeholder='Any additional comments or notes about your submission...' className='w-full border-2 border-white p-2 bg-slate-900/70 rounded-lg' ></textarea>
+                                <h3>You can add any comments about challenges faced, features implemented, or additional information.</h3>
 
-                                <button disabled={loading} type='submit' className='max-w-sm text-black bg-sky-500 py-2 shadow-lg shadow-sky-500 rounded-sm' >{loading ? "...submitting task" : "submit"}</button>
+                                <button disabled={loading} type='submit' className='max-w-sm text-black bg-sky-500 py-2' >{loading ? "...submitting task" : "submit"}</button>
                             </form>
                         </div>
                     ) : (
-                        <TaskStatusBadge status={taskStatus}/>
+                        <TaskStatusBadge status={taskStatus} />
                     )}
                 </section>
             </section>
-
         </section>
     )
 }

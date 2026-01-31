@@ -242,28 +242,31 @@ const AdminDashboard = () => {
             </section>
           ) : (
             <section className='w-full' >
-              <table className='border-1 rounded' >
+              <table className='border-1 rounded text-white ' >
                 <thead>
                   <tr>
-                    <th className='border-2 text-[9px] md:text-lg text-white font1 p-0 ' >Name</th>
-                    <th className='border-2 text-[9px] md:text-lg text-white font1 p-0 ' >Email</th>
-                    <th className='border-2 text-[9px] md:text-lg text-white font1 p-0 ' >Password</th>
-                    <th className='border-2 text-[9px] md:text-lg text-white font1 p-0 ' >Full Details</th>
+                    <th className='border-2 text-[9px] md:text-lg' >Name</th>
+                    <th className='border-2 text-[9px] md:text-lg' >Email</th>
+                    <th className='border-2 text-[9px] md:text-lg' >Password</th>
+                    <th className='border-2 text-[9px] md:text-lg' >Full Details</th>
                   </tr>
                 </thead>
                 <tbody>
                   {internsProfile.map((interns, index) => (
-                    <tr className='' key={interns._id} >
-                      <td className='border-2 text-white text-[7px] w-full font1 p-1 md:p-4 md:text-sm overflow-auto whitespace-normal' >
-                        <h1>{interns.fullName} <Copy onClick={()=>{navigator.clipboard.writeText(interns.fullName); alert("Full name copy successfully")}} className='hover:text-emerald-500 hover:scale-[1.1] transition' size={13} /> </h1>
+                    <tr key={interns._id} >
+                      <td className='border-2 text-[7px] w-full p-1 md:p-4 md:text-sm' >
+                        <h1>{interns.fullName}</h1>
+                        <h1 className='text-emerald-500' onClick={()=>{navigator.clipboard.writeText(interns.fullName); alert("Name copy Successfully")}}  >Copy</h1>
                       </td>
-                      <td className='border-2 text-white text-[7px] w-full font1 p-1 md:p-4 md:text-sm overflow-auto whitespace-normal' >
-                        <h1>{interns.email} <Copy onClick={()=>{navigator.clipboard.writeText(interns.email); alert("Email copy successfully")}} className='hover:text-emerald-500 hover:scale-[1.1] transition' size={13} /> </h1>
+                      <td className='border-2 text-[7px] w-full p-1 md:p-4 md:text-sm' >
+                        <h1>{interns.email}</h1>
+                        <h1 className='text-emerald-500' onClick={()=>{navigator.clipboard.writeText(interns.email); alert("Email copy successfully") }} >Copy</h1>
                       </td>
-                      <td className='border-2 text-white text-[7px] w-full font1 p-1 md:p-4 md:text-sm overflow-auto whitespace-normal' >
-                        <h1>{interns.password} <Copy onClick={()=>{navigator.clipboard.writeText(interns.password); alert("Password copy successfully")}} className='hover:text-emerald-500 hover:scale-[1.1] transition' size={13} /> </h1>
+                      <td className='border-2 text-[7px] w-full p-1 md:p-4 md:text-sm' >
+                        <h1>{interns.password}</h1>
+                        <h1 className='text-emerald-500' onClick={()=>{navigator.clipboard.writeText(interns.password); alert("Password copy successfully")}} >Copy</h1>
                       </td>
-                      <td className='border-2 text-white text-[7px] w-full font1 p-1 md:p-4 md:text-sm overflow-auto whitespace-normal' >
+                      <td className='border-2 text-white text-[7px] w-full p-1 md:p-4 md:text-lg' >
                         <h1 className='text-emerald-500' >view</h1>
                       </td>
                     </tr>

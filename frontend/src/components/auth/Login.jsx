@@ -3,7 +3,6 @@ import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import logo from '../../images/hd-logo.png'
 import { userLoginApi } from '../../features/actions/authactions';
-import { toast } from 'react-toastify';
 import { useState } from 'react';
 
 
@@ -12,6 +11,7 @@ const Login = ({ setToggle }) => {
     const dispatch = useDispatch();
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
     const [loading, setLoading] = useState(false);
+    const [serverMsg, setServerMsg] = useState("");
 
     // ========================
     // Login page onsbmit
@@ -21,22 +21,11 @@ const Login = ({ setToggle }) => {
         try {
             const response = await dispatch(userLoginApi(data));
             if (response) {
-                toast.success("Login successfully", {
-                    style: {
-                        color: "#FFFFFF",
-                        background: "#0F172B"
-                    }
-                })
                 console.log('user is login');
             }
         } catch (error) {
             console.log("this is error for login", error)
-            toast.error(error.message || "Login failed", {
-                style: {
-                    background: "#000000",
-                    color: "#FFFFFF",
-                }
-            })
+            setServerMsg("Invalid Credentials❌")
         } finally {
             setLoading(false);
             reset();
@@ -46,64 +35,65 @@ const Login = ({ setToggle }) => {
     return (
         <div className='min-h-screen w-full bg-black flex flex-col items-center justify-center' >
 
+            {/* company logo */}
             <div className='h-[90px] w-[260px] absolute top-2' >
-                <img className='hover:scale-[1.1] transition' src={logo} alt="company logo" />
+                <img src={logo} alt="company logo" />
             </div>
 
             <div className='w-full max-w-3xl flex border-2 border-[#102A43] rounded shadow-xl shadow-[#102A43] relative z-[99]' >
 
                 {/* Login Form  */}
-                <motion.div initial={{ x: -100 }} animate={{ x: 0 }}
-                    className='w-full z-[99] bg-black ' >
+                <div className='w-full z-[99] bg-black ' >
                     <form onSubmit={handleSubmit(onSubmit)} className='px-14 py-15 space-y-4 border-r-2 border-[#102A43]' >
-                        <h1 className='text-sky-500 text-center font-semibold text-lg' >Login </h1>
+                        <h1 className='text-sky-500 text-center text-2xl' >Login </h1>
 
                         {/* email */}
                         <div className='flex flex-col px-5 py-1 space-y-3' >
-                            <label className='text-white text-sm hover:scale-[1.1] transition' >Email</label>
+                            <label className='text-white' >Email</label>
                             <input
                                 {...register("email", {
                                     required: "Email is required",
                                     pattern: { value: /\S+@\S+\.\S+/, message: "Invalid email" }
                                 })}
                                 className={`bg-tranparent text-white border-b outline-0 ${errors.email ? "border-red-500" : "border-white"}`}
-                                id='email'
                                 type="email" />
                             {errors.email && (
-                                <span className='text-red-500 text-[10px]' >{errors.email.message}</span>
+                                <span className='text-red-500' >{errors.email.message}</span>
                             )}
                         </div>
 
                         {/* password */}
                         <div className='flex flex-col px-5 py-1 space-y-4' >
-                            <label className='text-white text-sm hover:scale-[1.1] tansition' >Password</label>
+                            <label className='text-white' >Password</label>
                             <input
                                 {...register("password", {
                                     required: "Password is required",
                                     minLength: { value: 8, message: "Atleat 8 correct is required" }
                                 })}
                                 className={`bg-tranparent text-white border-b outline-0 ${errors.password ? "border-red-500" : "border-white"}`}
-                                id='password'
                                 type="password" />
                             {errors.password && (
-                                <span className='text-red-500 text-[10px]' >{errors.password.message}</span>
+                                <span className='text-red-500' >{errors.password.message}</span>
                             )}
                         </div>
 
                         <button disabled={loading} type='submit'
-                            className='text-black bg-[#102A43] scale[1.1] text-sm font-bold px-4 py-2 rounded hover:bg-sky-500  hover:scale-[1.1] transition  '
+                            className='text-black bg-[#102A43] text-sm font-bold px-4 py-2 rounded'
                         >{loading ? "...Loading" : "Login"}</button>
+
+                        {/* status showing */}
+                        {serverMsg && (<div className='text-red-500' >{serverMsg}</div>)}
                     </form>
 
                     {/* mobile login page switch button */}
                     <div className='text-white md:hidden '>
-                        <p>Already an account?{" "}
+                        <p>Create Your account?{" "}
                             <button onClick={() => setToggle((perv) => !perv)} type='button' className='text-emerald-500' >
-                                Login
+                                Signup
                             </button>
                         </p>
                     </div>
-                </motion.div>
+                </div>
 
                 {/* Information div */}
                 <div className='w-full hidden md:flex flex-col items-center justify-center p-10 bg-black z-[99] relative' >
@@ -112,17 +102,15 @@ const Login = ({ setToggle }) => {
                     <motion.div animate={{ rotate: 360 }} transition={{ duration: 15, repeat: Infinity }}
                         className='h-full w-full hidden md:block absolute top-0 right-0 bg-[#102A43] rounded z-[9]' ></motion.div>
                     <div className='text-white z-[99] '>
-                        <motion.h1 initial={{ y: -100 }} animate={{ y: -10 }}
-                            className='text-black hover:scale-[1.1] transition font-bold text-2xl text-center' >Welcome! </motion.h1>
+                        <h1 className='text-black font-bold text-2xl text-center' >Welcome! </h1>
 
                         {/* Switch to Login page button */}
-                        <motion.p initial={{ x: 100 }} animate={{ x: 0 }}
-                        >Already an account?{" "}
+                        <p>Create Your account?{" "}
                             <button onClick={() => setToggle((perv) => !perv)}
-                                type='button' className='text-sky-500 font-bold underline hover:scale-[1.1] transition ' >
+                                type='button' className='text-sky-500 font-bold underline' >
                                 Sign up
                             </button>
-                        </motion.p>
+                        </p>
                     </div>
                 </div>
             </div>
