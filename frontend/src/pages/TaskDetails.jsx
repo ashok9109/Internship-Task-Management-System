@@ -89,7 +89,7 @@ const TaskDetails = () => {
             console.log("Task submission error", error);
             alert("Failed to submit task ❌");
         } finally {
-            setLoading(false);
+            setLoading(false); 
         }
     };
 

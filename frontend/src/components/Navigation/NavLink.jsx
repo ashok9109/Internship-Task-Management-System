@@ -1,4 +1,3 @@
-import { Album, BackpackIcon, BookCheck, Crown, Home, UploadCloud } from "lucide-react";
 import { NavLink as RouterNavLink, useLocation, useNavigate, } from "react-router";
 import { useDispatch } from 'react-redux';
 import logo from '../../images/hd-logo.png';
@@ -9,12 +8,12 @@ import { axiosintance } from "../../config/axiosintance";
 // Nav link 
 // ===================
 const navlink = [
-  { label: "Dashboard", icon: Home, to: "/home" },
-  { label: "Special Offer", icon: Crown, to: "/home/special-offer" },
-  { label: "My Courses", icon: BookCheck, to: "/home/my-courses" },
-  { label: "My Internship", icon: Album, to: "/home/my-internship" },
-  { label: "Admin Dashboard", icon: BackpackIcon, to: "/home/admin-dashoard" },
-  { label: "Admin Task Uploader", icon: UploadCloud, to: "/home/admin-task-uploader" }
+  { label: "Dashboard", to: "/home" },
+  // { label: "Special Offer", to: "/home/special-offer" },
+  // { label: "My Courses", to: "/home/my-courses" },
+  { label: "My Internship", to: "/home/my-internship" },
+  { label: "Admin Dashboard", to: "/home/admin-dashoard" },
+  { label: "Admin Task Uploader", to: "/home/admin-task-uploader" }
 ]
 
 const NavLink = () => {
@@ -35,7 +34,7 @@ const NavLink = () => {
         dispatch(removeUser());
       }
     } catch (error) {
-     console.log("This is error for logout", error);
+      console.log("This is error for logout", error);
     }
   }
 
@@ -51,19 +50,18 @@ const NavLink = () => {
 
         {/* Nav map */}
         <div className='w-full flex flex-col items-start justify-center gap-10 text-xl font-bold' >
-          {navlink.map(({ label, icon: Icon, to }, Idx) => {
+          {navlink.map(({ label, to }, Idx) => {
             return (
               <RouterNavLink key={label} to={to}
                 className={({ isActive }) => `${to === location.pathname ? "border-b-2 border-[#04B0F0] text-[#04B0F0]" : "text-[#04B0F0]"}`} >
-                <div className='flex gap-4 hover:scale-[1.1] transition space-y-5' >
-                  <Icon className="text-[#424242] " />
+                <div className='flex gap-4 hover:scale-[1.1] transition space-y-5 p-2' >
                   <span>{label}</span>
                 </div>
               </RouterNavLink>
             )
           })}
         </div>
-        
+
         {/* logout button */}
         <button onClick={logouthandler} className='text-[#424242] font-bold text-2xl' >Logout</button>
       </section>
