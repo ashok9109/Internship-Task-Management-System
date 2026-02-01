@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
-import { getAllTaskApi } from '../Apis/AdminTaskUploaderApis';
-import { createInternsProfileAPi, deleteTaskApi, fetchingAllInternsProfileApi } from '../Apis/AdminDashboardApis';
 import { useForm } from 'react-hook-form';
+import { axiosintance } from '../config/axiosintance';
 
 const AdminDashboard = () => {
 
@@ -20,9 +19,9 @@ const AdminDashboard = () => {
   useEffect(() => {
     const fetchingAllTask = async () => {
       try {
-        const response = await getAllTaskApi();
+        const response = await axiosintance.get("/api/admin/all-task");
         if (response) {
-          setTask(response.tasks)
+          setTask(response.data.tasks)
         }
       } catch (error) {
         console.log("error while fetching the all task", error)
@@ -38,7 +37,7 @@ const AdminDashboard = () => {
 
   const deleteHandler = async (taskId) => {
     try {
-      const response = await deleteTaskApi(taskId);
+      const response = await axiosintance.delete(`/api/admin/dashboard/delete-task/${taskId}`);
       if (response) {
         setDeleteServerMsg("✅Task Deleted Successfully✅");
       }
@@ -55,7 +54,7 @@ const AdminDashboard = () => {
   const CreateAccountHandler = async (data) => {
     setCreateLoading(true);
     try {
-      const response = await createInternsProfileAPi(data);
+      const response = await axiosintance.post("api/interns/profile-create", data);
       if (response) {
         setCreateAccountServerMsg("✅Interns Details Saved and Loin Id password Created✅");
       }
@@ -75,9 +74,9 @@ const AdminDashboard = () => {
   useEffect(() => {
     const fetchAllInterProfile = async () => {
       try {
-        const response = await fetchingAllInternsProfileApi();
+        const response = await axiosintance.get("/api/admin/dashboard/fetch-all-interns");
         if (response) {
-          setInternsProfile(response.internsProfile)
+          setInternsProfile(response?.data.internsProfile);
         }
       } catch (error) {
         console.log("error while fetching interns profile", error);
@@ -99,7 +98,7 @@ const AdminDashboard = () => {
     )
   };
 
-  if(!internsProfile){
+  if (!internsProfile) {
     return (
       <div className='min-h-screen w-full flex flex-col items-center justify-center bg-[#1A2546]' >
         <h1>.........Loading Interns Profile </h1>
@@ -255,15 +254,15 @@ const AdminDashboard = () => {
                     <tr key={interns._id} >
                       <td className='border-2 text-[7px] w-full p-1 md:p-4 md:text-sm' >
                         <h1>{interns.fullName}</h1>
-                        <h1 className='text-emerald-500' onClick={()=>{navigator.clipboard.writeText(interns.fullName); alert("Name copy Successfully")}}  >Copy</h1>
+                        <h1 className='text-emerald-500' onClick={() => { navigator.clipboard.writeText(interns.fullName); alert("Name copy Successfully") }}  >Copy</h1>
                       </td>
                       <td className='border-2 text-[7px] w-full p-1 md:p-4 md:text-sm' >
                         <h1>{interns.email}</h1>
-                        <h1 className='text-emerald-500' onClick={()=>{navigator.clipboard.writeText(interns.email); alert("Email copy successfully") }} >Copy</h1>
+                        <h1 className='text-emerald-500' onClick={() => { navigator.clipboard.writeText(interns.email); alert("Email copy successfully") }} >Copy</h1>
                       </td>
                       <td className='border-2 text-[7px] w-full p-1 md:p-4 md:text-sm' >
                         <h1>{interns.password}</h1>
-                        <h1 className='text-emerald-500' onClick={()=>{navigator.clipboard.writeText(interns.password); alert("Password copy successfully")}} >Copy</h1>
+                        <h1 className='text-emerald-500' onClick={() => { navigator.clipboard.writeText(interns.password); alert("Password copy successfully") }} >Copy</h1>
                       </td>
                       <td className='border-2 text-white text-[7px] w-full p-1 md:p-4 md:text-lg' >
                         <h1 className='text-emerald-500' >view</h1>

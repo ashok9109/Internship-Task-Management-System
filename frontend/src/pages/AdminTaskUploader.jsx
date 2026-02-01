@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { addCodeTaskApi, createTaskDetailsApi } from '../Apis/AdminTaskUploaderApis'
+import { axiosintance } from '../config/axiosintance';
 
 const AdminTaskUploader = () => {
 
@@ -24,7 +24,7 @@ const AdminTaskUploader = () => {
     const taskDetailsHandler = async (data) => {
         setTaskDetailsLoading(true);
         try {
-            const response = await createTaskDetailsApi(data);
+            const response = await axiosintance.post("/api/admin/task-uploader", data);
             if (response) {
                 setTaskDetailsServerMsg("✅Task Created Successfully✅");
             }
@@ -69,7 +69,7 @@ const AdminTaskUploader = () => {
             alert("Add The Task Number")
         }
         try {
-            const response = await addCodeTaskApi({ taskNumber: codeTaskNumber, sampleOutput: taskCode });
+            const response = await axiosintance.patch("/api/admin/task-code-uploader", ({ taskNumber: codeTaskNumber, sampleOutput: taskCode }));
             if (response) {
                 setTaskCodeServerMsg("✅Code uploaded Successfully✅")
             }

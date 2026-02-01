@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import bg from '../images/mern-stack-image.png'
 import { useEffect } from 'react';
-import { getAllTaskApi } from '../Apis/AdminTaskUploaderApis';
 import { Link } from 'react-router';
+import { axiosintance } from '../config/axiosintance';
 
 
 const MyInternship = () => {
@@ -12,9 +12,9 @@ const MyInternship = () => {
   useEffect(() => {
     async function fetchTask() {
       try {
-        const response = await getAllTaskApi();
+        const response = await axiosintance.get("/api/admin/all-task");
         if (response) {
-          setTasks(response.tasks);
+          setTasks(response.data.tasks);
         }
       } catch (error) {
         console.log("error fetching tasks", error)
@@ -96,7 +96,7 @@ const MyInternship = () => {
                 <div className='w-full flex items-center justify-between' >
                   <h1 className='text-sm text-gray-400 font-bold font1'>{task.title}</h1>
                   <Link to={`/home/task-details/${task._id}`} >
-                    <h1 className='text-white hover:bg-white hover:text-black rounded-lg p-2' transition>view Task</h1>
+                    <h1 className='text-white hover:bg-white hover:text-black rounded-lg p-2'>view Task</h1>
                   </Link>
                 </div>
               </div>

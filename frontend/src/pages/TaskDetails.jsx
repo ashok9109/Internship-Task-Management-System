@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router';
 import { axiosintance } from '../config/axiosintance';
-import { taskSubmissionApi } from '../Apis/TaskSubmissionApi';
 
 const TaskStatusBadge = ({ status }) => {
     const statusStyle = {
@@ -78,7 +77,7 @@ const TaskDetails = () => {
         }
 
         try {
-            const response = await taskSubmissionApi(playload);
+            const response = await axiosintance.post("/api/submission/intern-task", playload);
             if (response) {
                 alert("Task submitted successfully ✅")
                 setGitLink("");

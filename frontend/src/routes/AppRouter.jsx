@@ -6,7 +6,6 @@ import Dashboard from '../pages/Dashboard'
 // import MyCourses from '../pages/MyCourses'
 import MyInternship from '../pages/MyInternship'
 import AdminDashboard from '../pages/AdminDashboard'
-// import SpecialOffer from '../pages/SpecialOffer'
 import AdminTaskUploader from '../pages/AdminTaskUploader'
 import TaskDetails from '../pages/TaskDetails'
 
@@ -28,10 +27,6 @@ const AppRouter = () => {
                             path: "",
                             element: <Dashboard />
                         },
-                        // {
-                        //     path:"special-offer",
-                        //     element:<SpecialOffer/>
-                        // },
                         {
                             path: "admin-dashoard",
                             element: <AdminDashboard />
@@ -45,12 +40,12 @@ const AppRouter = () => {
                             element: <MyInternship />
                         },
                         {
-                            path:"task-details/:id",
-                            element:<TaskDetails/>
+                            path: "task-details/:id",
+                            element: <TaskDetails />
                         },
                         {
-                            path:'admin-task-uploader',
-                            element:<AdminTaskUploader/>
+                            path: 'admin-task-uploader',
+                            element: <AdminTaskUploader />
                         },
                         {
                             path: "admin-dashoard",
