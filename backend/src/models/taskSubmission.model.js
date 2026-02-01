@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const taskSubmissionSchema = new mongoose.Schema({
 
-    taskId: mongoose.Schema.Types.ObjectId,
+    taskId: { type: mongoose.Schema.Types.ObjectId, ref: "Interns-Task" },
 
     taskNumber: { type: String },
 
@@ -12,7 +12,7 @@ const taskSubmissionSchema = new mongoose.Schema({
 
     remarks: { type: String },
 
-    internId: mongoose.Schema.Types.ObjectId,
+    internId: { type: mongoose.Schema.Types.ObjectId, ref: "Interns-Profile" },
 
     internName: { type: String },
 

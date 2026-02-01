@@ -71,20 +71,21 @@ const AdminTaskUploader = () => {
         try {
             const response = await axiosintance.patch("/api/admin/task-code-uploader", ({ taskNumber: codeTaskNumber, sampleOutput: taskCode }));
             if (response) {
-                setTaskCodeServerMsg("✅Code uploaded Successfully✅")
+                setTaskCodeServerMsg("✅Code uploaded Successfully✅");
+                setTaskCode("");
+                setCodeTaskNumber("");
             }
         } catch (error) {
             console.log("error while uploading code", error);
-            setTaskCodeServerMsg("❌Code is not Uploaded ❌")
+            setTaskCodeServerMsg("❌Code is not Uploaded ❌");
         } finally {
             setTaskCodeLoading(false);
-            reset();
         }
     }
 
     return (
         <section className='min-h-screen md:min-h-full w-full text-center bg-[#1A2546]' >
-            <h1 className='text-2xl text-sky-500 font4 p-4'>🌐 Admin Task Management System</h1>
+            <h1 className='text-2xl text-sky-500 font4 p-4'>🌐 Admin Task Uploader System</h1>
 
             {/*page1 task details uploading page */}
             <section className='w-full flex items-center justify-center' >

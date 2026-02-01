@@ -85,5 +85,40 @@ const submissionStatusController = async (req, res) => {
 }
 
 
+// ==============================================
+// fetching the insterns all submitted tasks
+// ==============================================
 
-module.exports = { taskSubmissionController, submissionStatusController }
+const fetchInternAllTasks = async (req, res) => {
+    try {
+        const { internId } = req.params;
+
+        const internAllTask = await taskSubmissionModel.find({internId});
+
+        if (internAllTask.length === 0) {
+            return res.status(200).json({
+                success: true,
+                count: 0,
+                message: "NO intern task found"
+            })
+        }
+
+        return res.status(200).json({
+            success: true,
+            message: "All task found",
+            count: internAllTask.length,
+            internAllTask
+        })
+
+    } catch (error) {
+        console.log("error while fetching the interns all task", error);
+        return res.status(500).json({
+            success: false,
+            message: "Internal Server error",
+            error: error
+        })
+    }
+};
+
+
+module.exports = { taskSubmissionController, submissionStatusController, fetchInternAllTasks }

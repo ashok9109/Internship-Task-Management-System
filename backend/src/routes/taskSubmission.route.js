@@ -1,5 +1,5 @@
 const express = require("express");
-const { taskSubmissionController, submissionStatusController } = require("../controllers/taskSubmission.controller");
+const { taskSubmissionController, submissionStatusController, fetchInternAllTasks } = require("../controllers/taskSubmission.controller");
 const authMiddleware = require("../middlewares/auth.middleware");
 
 
@@ -17,6 +17,11 @@ router.post("/intern-task",authMiddleware, taskSubmissionController);
 
 router.get("/task-status/:taskId", authMiddleware, submissionStatusController);
 
+// ==========================================
+// fetching interns submitted all task api
+// ===========================================
+
+router.get("/intern-submitted/tasks/:internId", fetchInternAllTasks);
 
 
 module.exports = router;

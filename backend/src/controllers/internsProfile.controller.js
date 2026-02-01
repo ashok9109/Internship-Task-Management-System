@@ -12,7 +12,7 @@ const internsProfileController = async (req, res) => {
 
         if (!email || !password || !mobile) {
             return res.status(409).json({
-                success:false,
+                success: false,
                 message: "All fields are required"
             })
         }
@@ -31,7 +31,7 @@ const internsProfileController = async (req, res) => {
         const internProfile = await internsProfileModel.create({
             fullName,
             domain,
-            role,role,
+            role, role,
             email,
             password,
             mobile,
@@ -64,25 +64,59 @@ const internsProfileController = async (req, res) => {
 // Fetching interns Profile
 // ===============================
 
-const getAllInternsProfileController = async(req, res)=>{
+const getAllInternsProfileController = async (req, res) => {
     try {
-        
+
         const internsProfile = await internsProfileModel.find();
 
         return res.status(200).json({
-            success:true,
-            message:"Interns profile is fetched successfully",
-            count:internsProfile.length,
+            success: true,
+            message: "Interns profile is fetched successfully",
+            count: internsProfile.length,
             internsProfile
         })
     } catch (error) {
         console.log("errors while fetching interns profiles", error);
         return res.status(500).json({
-            success:false,
-            message:"Internal server errors",
-            error:error
+            success: false,
+            message: "Internal server errors",
+            error: error
         })
     }
 };
 
-module.exports = {internsProfileController, getAllInternsProfileController};
+
+// =====================================
+// fetch the single interns Profile
+// ======================================
+
+const fetchSingleInternProfile = async (req, res) => {
+    try {
+        const { internId } = req.params;
+
+        const intern = await internsProfileModel.findById(internId);
+
+        if (!intern) {
+            return res.status(404).json({
+                success: false,
+                message: "Interns is not found"
+            })
+        }
+
+        return res.status(200).json({
+            success: true,
+            message: "Intern profile fetched successfully",
+            intern
+        })
+
+    } catch (error) {
+        console.log("error while fetching single intern", error);
+        return res.status(500).json({
+            success: false,
+            message: "Internal server error",
+            error: error
+        })
+    }
+}
+
+module.exports = { internsProfileController, getAllInternsProfileController, fetchSingleInternProfile };

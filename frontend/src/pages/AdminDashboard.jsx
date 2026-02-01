@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
 import { axiosintance } from '../config/axiosintance';
+import { Link } from 'react-router';
 
 const AdminDashboard = () => {
 
@@ -108,12 +109,13 @@ const AdminDashboard = () => {
 
   return (
     <section className='min-h-screen md:min-h-full w-full flex flex-col items-center justify-center gap-10 bg-[#1A2546] md:p-5' >
+      <h1 className='text-2xl text-sky-500 font4 p-4'>🌐 Admin Task Management And Interns Mangement System</h1>
 
       {/* All interns task showing div */}
       <section className='w-full flex flex-col items-center justify-center space-y-2 border-2 border-sky-500 rounded-sm shadow-lg shadow-sky-500 bg-slate-900/50  ' >
 
         {/* Heading */}
-        <h1 className='text-sky-500 font4' >INTERNSHIP TASK</h1>
+        <h1 className='text-sky-500 font4 md:text-3xl' >INTERNSHIP TASK</h1>
 
         {/* Maping task */}
         <div className='w-full flex flex-col space-y-5 p-4' >
@@ -134,7 +136,7 @@ const AdminDashboard = () => {
       {/* so this create account to interns */}
       <section className='h-full w-full flex flex-col items-center justify-center' >
         <div className='w-full flex flex-col items-center justify-center border-2 border-sky-500 text-center bg-slate-900/50 rounded shadow-lg shadow-sky-500 md:p-5' >
-          <h1 className='text-sky-500 font4' >Interns Account creating And Data Saving page</h1>
+          <h1 className='text-sky-500 font4 md:text-3xl' >Interns Account creating And Data Saving page</h1>
 
           {/* form for input fields */}
           <form onSubmit={handleSubmit(CreateAccountHandler)} className='p-4 flex flex-col text-white space-y-2 md:gap-2 ' >
@@ -265,7 +267,9 @@ const AdminDashboard = () => {
                         <h1 className='text-emerald-500' onClick={() => { navigator.clipboard.writeText(interns.password); alert("Password copy successfully") }} >Copy</h1>
                       </td>
                       <td className='border-2 text-white text-[7px] w-full p-1 md:p-4 md:text-lg' >
-                        <h1 className='text-emerald-500' >view</h1>
+                        <Link to={`/home/interns-profile/${interns._id}`} >
+                          <h1 className='text-emerald-500' >view</h1>
+                        </Link>
                       </td>
                     </tr>
                   ))}

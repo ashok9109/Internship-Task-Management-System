@@ -9,7 +9,6 @@ import { axiosintance } from "../../config/axiosintance";
 // ===================
 const navlink = [
   { label: "Dashboard", to: "/home" },
-  // { label: "Special Offer", to: "/home/special-offer" },
   // { label: "My Courses", to: "/home/my-courses" },
   { label: "My Internship", to: "/home/my-internship" },
   { label: "Admin Dashboard", to: "/home/admin-dashoard" },

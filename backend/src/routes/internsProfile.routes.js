@@ -1,5 +1,5 @@
 const express = require("express");
-const { internsProfileController } = require("../controllers/internsProfile.controller");
+const { internsProfileController, fetchSingleInternProfile } = require("../controllers/internsProfile.controller");
 
 
 const router = express.Router();
@@ -9,6 +9,12 @@ const router = express.Router();
 // ==============================
 
 router.post("/profile-create",internsProfileController);
+
+// ==================================
+// Single inten profile fetching api
+// ===================================
+
+router.get("/single-profile/:internId", fetchSingleInternProfile);
 
 
 
