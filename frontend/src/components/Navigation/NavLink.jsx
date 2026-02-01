@@ -4,8 +4,6 @@ import { useDispatch } from 'react-redux';
 import logo from '../../images/hd-logo.png';
 import { removeUser } from "../../features/reducers/authSlice";
 import { axiosintance } from "../../config/axiosintance";
-import { toast } from "react-toastify";
-import { motion } from "motion/react"
 
 // ===================
 // Nav link 

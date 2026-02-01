@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { getAllTaskApi } from '../Apis/AdminTaskUploaderApis';
 import { createInternsProfileAPi, deleteTaskApi, fetchingAllInternsProfileApi } from '../Apis/AdminDashboardApis';
 import { useForm } from 'react-hook-form';
-import { Copy} from "lucide-react";
 
 const AdminDashboard = () => {
 

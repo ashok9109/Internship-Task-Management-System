@@ -1,4 +1,3 @@
-import { motion } from 'motion/react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import logo from '../../images/hd-logo.png'
@@ -99,8 +98,7 @@ const Login = ({ setToggle }) => {
                 <div className='w-full hidden md:flex flex-col items-center justify-center p-10 bg-black z-[99] relative' >
 
                     {/* box rotater */}
-                    <motion.div animate={{ rotate: 360 }} transition={{ duration: 15, repeat: Infinity }}
-                        className='h-full w-full hidden md:block absolute top-0 right-0 bg-[#102A43] rounded z-[9]' ></motion.div>
+                    <div className='h-full w-full hidden md:block absolute top-0 right-0 bg-[#102A43] rounded z-[9] rotate-infinite' ></div>
                     <div className='text-white z-[99] '>
                         <h1 className='text-black font-bold text-2xl text-center' >Welcome! </h1>
 

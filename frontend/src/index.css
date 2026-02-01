@@ -17,10 +17,31 @@
 }
 
 
-.font1{
+.font1 {
     font-family: font1;
 }
 
-.font4{
+.font4 {
     font-family: font4;
+}
+
+
+/* ================================== */
+/* ===========Animations============= */
+/* ================================== */
+
+@keyframes rotateBox {
+
+    from {
+        transform: rotate(0);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+.rotate-infinite {
+    animation: rotateBox 10s linear infinite;
 }
