@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import logo from '../../images/hd-logo.png';
-import { userRegisterApi } from '../../features/actions/authactions';
+import { userRegisterApi } from '../../features/actions/authActions';
 import { useState } from 'react';
 
 const Register = ({ setToggle }) => {
