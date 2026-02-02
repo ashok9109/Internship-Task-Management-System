@@ -24,7 +24,7 @@ export const userLoginApi = (data) => async (dispatch) => {
     try {
         const response = await axiosintance.post("/api/auth/login", data);
         if (response) {
-            return dispatch(addUser(response.data));
+            return dispatch(addUser(response.data.user));
         }
     } catch (error) {
         throw error.response?.data || error;

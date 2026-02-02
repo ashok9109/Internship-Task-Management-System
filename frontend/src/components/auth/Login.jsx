@@ -35,19 +35,19 @@ const Login = ({ setToggle }) => {
         <div className='min-h-screen w-full bg-black flex flex-col items-center justify-center' >
 
             {/* company logo */}
-            <div className='h-[90px] w-[260px] absolute top-2' >
+            <div className='h-[70px] w-[210px] absolute top-2' >
                 <img src={logo} alt="company logo" />
             </div>
 
-            <div className='w-full max-w-3xl flex border-2 border-[#102A43] rounded shadow-xl shadow-[#102A43] relative z-[99]' >
+            <div className='w-full max-w-2xl flex border-2 border-[#102A43] rounded shadow-xl shadow-[#102A43] relative z-[99]' >
 
                 {/* Login Form  */}
                 <div className='w-full z-[99] bg-black ' >
-                    <form onSubmit={handleSubmit(onSubmit)} className='px-14 py-15 space-y-4 border-r-2 border-[#102A43]' >
+                    <form onSubmit={handleSubmit(onSubmit)} className='px-14 py-15  border-r-2 border-[#102A43]' >
                         <h1 className='text-sky-500 text-center text-2xl' >Login </h1>
 
                         {/* email */}
-                        <div className='flex flex-col px-5 py-1 space-y-3' >
+                        <div className='flex flex-col px-5 py-1 space-y-2' >
                             <label className='text-white' >Email</label>
                             <input
                                 {...register("email", {
@@ -62,7 +62,7 @@ const Login = ({ setToggle }) => {
                         </div>
 
                         {/* password */}
-                        <div className='flex flex-col px-5 py-1 space-y-4' >
+                        <div className='flex flex-col px-5 py-1 space-y-2' >
                             <label className='text-white' >Password</label>
                             <input
                                 {...register("password", {

@@ -1,5 +1,5 @@
 import { NavLink as RouterNavLink, useLocation, useNavigate, } from "react-router";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import logo from '../../images/hd-logo.png';
 import { removeUser } from "../../features/reducers/authSlice";
 import { axiosintance } from "../../config/axiosintance";
@@ -21,7 +21,18 @@ const NavLink = () => {
   const location = useLocation();
   const dispatch = useDispatch();
 
-  // ============================
+  const { user, isLoading } = useSelector((state) => state.auth);
+
+  const role = user?.role;
+
+  if (isLoading) {
+    return null
+  }
+
+  if (!role) {
+    return (<div><h1>waitions</h1></div>)
+  }
+  // // ============================
   // Logout handler for logout
   // =============================
   const logouthandler = async () => {
@@ -49,7 +60,14 @@ const NavLink = () => {
 
         {/* Nav map */}
         <div className='w-full flex flex-col items-start justify-center gap-10 text-xl font-bold' >
-          {navlink.map(({ label, to }, Idx) => {
+          {navlink.map(({ label, to }) => {
+
+            if (role === "intern" && (label === "Admin Dashboard" || label === "Admin Task Uploader")) {
+              return null
+            }
+            if (role === "user" && (label === "Admin Dashboard" || label === "Admin Task Uploader")) {
+              return null
+            }
             return (
               <RouterNavLink key={label} to={to}
                 className={({ isActive }) => `${to === location.pathname ? "border-b-2 border-[#04B0F0] text-[#04B0F0]" : "text-[#04B0F0]"}`} >

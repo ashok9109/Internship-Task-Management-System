@@ -88,7 +88,7 @@ const AdminTaskUploader = () => {
             <h1 className='text-2xl text-sky-500 font4 p-4'>🌐 Admin Task Uploader System</h1>
 
             {/*page1 task details uploading page */}
-            <section className='w-full flex items-center justify-center' >
+            <section className='w-full flex items-center justify-center p-2' >
                 <div className='max-w-4xl flex flex-col items-center justify-center bg-slate-900/50 text-white shadow-lg shadow-sky-500 border-2 border-sky-500 rounded p-2' >
                     <h1> Task Details Requirements</h1>
                     <form onSubmit={handleSubmit(taskDetailsHandler)} className='w-full' >
