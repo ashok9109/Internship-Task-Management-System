@@ -28,7 +28,10 @@ const internsProfileController = async (req, res) => {
             role: role
         });
 
+        console.log("this is the user id", internAuth._id)
+
         const internProfile = await internsProfileModel.create({
+            userId: internAuth._id,
             fullName,
             domain,
             role, role,
@@ -50,7 +53,7 @@ const internsProfileController = async (req, res) => {
         });
 
     } catch (error) {
-        console.log("Errors while creating interns profiles");
+        console.log("Errors while creating interns profiles", error);
         return res.status(500).json({
             success: false,
             message: "Internal server error",

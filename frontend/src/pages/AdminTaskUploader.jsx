@@ -6,7 +6,7 @@ const AdminTaskUploader = () => {
 
     // ===========================loadings&Errors ======================
     const [taskDetailsLoading, setTaskDetailsLoading] = useState(false);
-    const [uploadImageLoading, setUploadImageLoading] = useState(false);
+    // const [uploadImageLoading, setUploadImageLoading] = useState(false);
     const [taskCodeLoading, setTaskCodeLoading] = useState(false);
     const [taskDetailsServerMsg, setTaskDetailsServerMsg] = useState("");
     const [taskCodeServerMsg, setTaskCodeServerMsg] = useState("")
@@ -14,8 +14,8 @@ const AdminTaskUploader = () => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
     // ===============state-for-values========================
-    const [imageTaskNumber, setImageTaskNumber] = useState("");
-    const [imageUploadFile, setImageUploadFile] = useState(null);
+    // const [imageTaskNumber, setImageTaskNumber] = useState("");
+    // const [imageUploadFile, setImageUploadFile] = useState(null);
     const [codeTaskNumber, setCodeTaskNumber] = useState("");
     const [taskCode, setTaskCode] = useState("");
 
@@ -39,26 +39,26 @@ const AdminTaskUploader = () => {
     }
 
     // Upload image submit handler
-    const uploadImageHandler = async (e) => {
-        e.preventDefault();
-        setUploadImageLoading(true);
+    // const uploadImageHandler = async (e) => {
+    //     e.preventDefault();
+    //     setUploadImageLoading(true);
 
-        if (!imageTaskNumber) {
-            alert("Please Add The Task Number");
-        }
+    //     if (!imageTaskNumber) {
+    //         alert("Please Add The Task Number");
+    //     }
 
-        try {
-            const formData = new FormData();
-            formData.append("imageTaskNumber", imageTaskNumber);
-            formData.append("files", imageUploadFile)
-            console.log("this is the upload image data", formData)
-        } catch (error) {
+    //     try {
+    //         const formData = new FormData();
+    //         formData.append("imageTaskNumber", imageTaskNumber);
+    //         formData.append("files", imageUploadFile)
+    //         console.log("this is the upload image data", formData)
+    //     } catch (error) {
 
-        } finally {
-            setUploadImageLoading(false);
-            reset();
-        }
-    }
+    //     } finally {
+    //         setUploadImageLoading(false);
+    //         reset();
+    //     }
+    // }
 
     // Task code submit handler
     const taskCodeHandler = async (e) => {
@@ -181,17 +181,14 @@ const AdminTaskUploader = () => {
             {/* page2 code */}
             <section className='flex flex-col space-y-3 text-white' >
 
-                <div className='h-full w-full flex flex-col md:flex-row gap-20 p-4' >
+                <div className='h-full w-full flex flex-col items-center justify-center md:flex-row gap-20 p-4' >
 
-                    {/* Left div */}
-                    <div className='w-full max-w-5xl flex flex-col items-center justify-center bg-slate-900/50 shadow shadow-lg shadow-sky-500 border-2 border-sky-500 rounded-lg space-y-6 p-3' >
+                    {/* <div className='w-full max-w-5xl flex flex-col items-center justify-center bg-slate-900/50 shadow shadow-lg shadow-sky-500 border-2 border-sky-500 rounded-lg space-y-6 p-3' >
                         <h1 className='font1' >1. 📊 Upload Tasks via Excel</h1>
                         <p>Upload multiple internship tasks at once using an <span className='text-sky-500' >Excel File.</span></p>
 
-                        {/* This is the form for uploading Excel and csv */}
                         <form onSubmit={uploadImageHandler} className='w-full space-y-2 flex flex-col space-y-10' >
 
-                            {/* Excel file uploading input */}
                             <label>Upload the excel</label>
                             <label className='w-full border-2 flex itmes-center justify-center border-sky-500 border-dashed rounded-sm p-6' >
                                 <h1 className='text-sm text-slate-500' >Drag and Drop</h1>
@@ -203,10 +200,10 @@ const AdminTaskUploader = () => {
                                 {uploadImageLoading ? "....Uploading Image just Wait" : "Upload Image"}
                             </button>
                         </form>
-                    </div>
+                    </div> */}
 
                     {/* Right div */}
-                    <div className='w-full max-w-5xl flex flex-col items-center justify-center bg-slate-900/50 shadow shadow-lg shadow-sky-500 border-2 border-sky-500 rounded-lg space-y-7 p-3' >
+                    <div className='w-full max-w-3xl flex flex-col items-center justify-center bg-slate-900/50 shadow shadow-lg shadow-sky-500 border-2 border-sky-500 rounded-lg space-y-7 p-3' >
                         <h1>2. Add the task code for interns</h1>
                         <p>This task code is help the interns to complete the task and add internship task with the <span className='text-sky-500 text-sm font-bold ' >Task Number</span></p>
 

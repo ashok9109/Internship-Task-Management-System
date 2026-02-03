@@ -1,3 +1,4 @@
+const internsProfileModel = require("../models/internsProfile.model");
 const taskSubmissionModel = require("../models/taskSubmission.model");
 
 // ======================================
@@ -15,7 +16,18 @@ const taskSubmissionController = async (req, res) => {
             })
         }
 
-        const user = req.user;
+        const userId = req.user._id;
+
+
+        const internProfile = await internsProfileModel.findOne({ userId });
+
+
+        if (!internProfile) {
+            return res.status(404).json({
+                success: false,
+                message: "Intern profile is not found"
+            })
+        }
 
         const submission = await taskSubmissionModel.create({
             taskId,
@@ -23,9 +35,9 @@ const taskSubmissionController = async (req, res) => {
             gitHubLink,
             documentationLink,
             remarks,
-            internId: user._id,
-            internEmail: user.email,
-            internName: user.fullName
+            internId: internProfile._id,
+            internEmail: internProfile.email,
+            internName: internProfile.fullName
         });
 
         return res.status(201).json({
@@ -57,9 +69,19 @@ const submissionStatusController = async (req, res) => {
 
         const user = req.user;
 
+        const userId = user._id
+
+        const internProfile = await internsProfileModel.findOne({ userId: userId });
+
+        if (!internProfile) {
+            return res.status(404).json({
+                message: "Intern Profile not found"
+            })
+        }
+
         const submission = await taskSubmissionModel.findOne({
             taskId,
-            internId: user._id
+            internId: internProfile._id
         })
 
         if (!submission) {
@@ -93,7 +115,7 @@ const fetchInternAllTasks = async (req, res) => {
     try {
         const { internId } = req.params;
 
-        const internAllTask = await taskSubmissionModel.find({internId});
+        const internAllTask = await taskSubmissionModel.find({ internId });
 
         if (internAllTask.length === 0) {
             return res.status(200).json({

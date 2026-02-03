@@ -57,7 +57,6 @@ const TaskDetails = () => {
     // ==========================================
 
     const taskHandlerSubmit = async (e) => {
-        e.preventDefault();
         setLoading(true);
 
         if (!gitLink) {
@@ -88,7 +87,7 @@ const TaskDetails = () => {
             console.log("Task submission error", error);
             alert("Failed to submit task ❌");
         } finally {
-            setLoading(false); 
+            setLoading(false);
         }
     };
 
@@ -103,6 +102,7 @@ const TaskDetails = () => {
         const fetchStatus = async () => {
             try {
                 const response = await axiosintance.get(`/api/submission/task-status/${id}`);
+
                 if (response.data.submitted) {
                     setSubmitted(true);
                     setTaskStatus(response.data.status);

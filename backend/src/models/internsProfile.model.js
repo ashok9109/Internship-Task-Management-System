@@ -2,6 +2,8 @@ const mongoose = require("mongoose");
 
 const internsProfileSchema = new mongoose.Schema({
 
+    userId: { type: mongoose.Schema.Types.ObjectId, ref: "user" },
+
     fullName: { type: String },
 
     domain: { type: String },
