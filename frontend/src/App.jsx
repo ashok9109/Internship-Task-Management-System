@@ -2,7 +2,7 @@ import AppRouter from './routes/AppRouter';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { axiosintance } from './config/axiosintance';
-import { addUser } from './features/reducers/authSlice';
+import { addUser, finishLoading } from './features/reducers/authSlice';
 
 const App = () => {
 
@@ -16,6 +16,7 @@ const App = () => {
           dispatch(addUser(response?.data?.user))
         }
       } catch (error) {
+        dispatch(finishLoading());
         if(error.response?.status  === 404){
           return
         }

@@ -1,8 +1,83 @@
-import React from 'react'
+import svg from '../images/OnlineTest.Svg'
+import PublicNavBar from '../components/Navigation/PublicNavBar';
+import courses1 from "../images/courses-image-1.png";
+import courses2 from "../images/courses-image-2.png";
+import courses3 from "../images/courses-image-3.png";
+import courses4 from "../images/courses-image-4.png";
+
 
 const HomePage = () => {
   return (
-    <div className='min-h-full bg-[#1A2546]' >HomePage</div>
+    <section className='min-h-screen md:min-h-screen bg-[#102A43]' >
+
+      {/* Nav bar */}
+      <PublicNavBar />
+
+      {/* hero section */}
+      <section className='w-full flex flex-col justify-evenly md:flex-row text-white p-3 gap-5' >
+        <div className="w-full w-full md:max-w-xl font1 p-3 bg-slate-900/50 border-2 border-sky-500 shadow-lg shadow-sky-500 rounded p-5" >
+          <h1>Unlock Your Full Potential with <span className='text-sky-500 font4' >Upstare Research</span></h1>
+          <p className='mt-5' > Expert-led courses designed to help you excel in your career by providing in-depth knowledge, hands-on training,
+            and real-world projects. Learn from industry professionals, build job-ready skills, and gain the confidence to
+            achieve your dreams. Whether you're starting fresh or upskilling, our courses offer personalized guidance and
+            career-focused learning to set you up for long-term success.</p>
+        </div>
+
+        {/* icon */}
+        <div className='w-full' >
+          <img className="w-full md:h-[300px]" src={svg} alt="Svg" />
+        </div>
+      </section>
+
+      {/* our Courses */}
+      <section className='w-full p-5' >
+        <h1 className='text-center font4 text-2xl text-white p-5' >Explore Our Courses</h1>
+
+        {/* Courses */}
+        <div className='w-full flex flex-col items-center justify-evenly md:flex-row gap-10' >
+
+          {/* Data Analytics */}
+          <div className='flex flex-col bg-slate-900/50 border-2 border-sky-500 shadow-lg shadow-sky-500 p-6 text-white space-y-4 font1'>
+            <img src={courses1} alt="courses image" />
+            <h1 className='text-sky-500' >Data Analytics</h1>
+            <p className='text-sm' >Data Analytics Course - Master Data Skills with Upstare Research 🚀 Turn Data into Actionable Insights & Build a Successful Career in Analytics!
+              💡 In today's data-driven world, businesses rely on skilled data analysts to uncover trends, enhance decision-making, and drive success.
+            </p>
+            <button className='bg-sky-500 text-white text-sm py-2' >Enroll Now</button>
+          </div>
+
+          {/* Digital Marketing */}
+          <div className='flex flex-col bg-slate-900/50 border-2 border-sky-500 shadow-lg shadow-sky-500 p-6 text-white space-y-4 font1'>
+            <img src={courses2} alt="courses image" />
+            <h1 className='text-sky-500' >Digital Marketing</h1>
+            <p className='text-sm' > Digital Marketing Course - Master Online Marketing with Upstare Research Unlock the Power of Digital Marketing & Build a High-Growth Career! In today's
+              digital-first world, businesses of all sizes rely on digital marketing to connect with their audience, drive sales, and grow their brand.
+            </p>
+            <button className='bg-sky-500 text-white text-sm py-2' >Enroll Now</button>
+          </div>
+
+          {/* Ui/Ux Design */}
+          <div className='flex flex-col bg-slate-900/50 border-2 border-sky-500 shadow-lg shadow-sky-500 p-6 text-white space-y-4 font1'>
+            <img src={courses3} alt="courses image" />
+            <h1 className='text-sky-500' >UI/UX Design</h1>
+            <p className='text-sm' >Design intuitive, engaging, and user-centered digital experiences with expert mentorship. Learn UI/UX fundamentals, wireframing, prototyping, user research,
+               and usability testing to create impactful designs.In today’s digital-first world, great user experience is key to product succ 
+            </p>
+            <button className='bg-sky-500 text-white text-sm py-2' >Enroll Now</button>
+          </div>
+           
+           {/* Web Development */}
+          <div className='flex flex-col bg-slate-900/50 border-2 border-sky-500 shadow-lg shadow-sky-500 p-6 text-white space-y-4 font1'>
+            <img src={courses4} alt="courses image" />
+            <h1 className='text-sky-500' >Web Development</h1>
+            <p className='text-sm' >Web Development Course - Build Modern Websites & Applications with Upstare Research Master Frontend & Backend
+               Development to Launch Your Tech Career! In today's digital world, websites and web applications are the backbone of businesses, services, and everyday interactions. 
+            </p>
+            <button className='bg-sky-500 text-white text-sm py-2' >Enroll Now</button>
+          </div>
+        </div>
+      </section>
+    </section>
   )
 }
 

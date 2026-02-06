@@ -9,12 +9,29 @@ import AdminDashboard from '../pages/AdminDashboard'
 import AdminTaskUploader from '../pages/AdminTaskUploader'
 import TaskDetails from '../pages/TaskDetails'
 import InternsProfileDetails from '../pages/InternsProfileDetails'
+import HomePage from '../pages/HomePage'
+import PublicLayout from '../Layouts/PublicLayout'
+import Register from '../components/auth/Register'
 
 const AppRouter = () => {
     const router = createBrowserRouter([
         {
             path: "/",
-            element: <AuthLayout />
+            element: <PublicLayout/>,
+            children:[
+                {
+                    path:"",
+                    element:<HomePage/>
+                },
+                {
+                    path:"login",
+                    element:<AuthLayout/>
+                },
+                {
+                    path:"register",
+                    element:<Register/>
+                }
+            ]
         },
         {
             path: "/home",
@@ -24,38 +41,14 @@ const AppRouter = () => {
                     path: "",
                     element: <HomeLayout />,
                     children: [
-                        {
-                            path: "",
-                            element: <Dashboard />
-                        },
-                        {
-                            path: "admin-dashoard",
-                            element: <AdminDashboard />
-                        },
-                        // {
-                        //     path: 'my-courses',
-                        //     element: <MyCourses />
-                        // },
-                        {
-                            path: 'my-internship',
-                            element: <MyInternship />
-                        },
-                        {
-                            path: "task-details/:id",
-                            element: <TaskDetails />
-                        },
-                        {
-                            path: 'admin-task-uploader',
-                            element: <AdminTaskUploader />
-                        },
-                        {
-                            path: "admin-dashoard",
-                            element: <AdminDashboard />
-                        },
-                        {
-                            path:"interns-profile/:id",
-                            element:<InternsProfileDetails/>
-                        }
+                        { path: "", element: <Dashboard /> },
+                        { path: "admin-dashoard", element: <AdminDashboard /> },
+                        // {   path: 'my-courses', element: <MyCourses />  },
+                        { path: 'my-internship', element: <MyInternship /> },
+                        { path: "task-details/:id", element: <TaskDetails /> },
+                        { path: 'admin-task-uploader', element: <AdminTaskUploader /> },
+                        { path: "admin-dashoard", element: <AdminDashboard /> },
+                        { path: "interns-profile/:id", element: <InternsProfileDetails /> }
                     ]
                 }
             ]

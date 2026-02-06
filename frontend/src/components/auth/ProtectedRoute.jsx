@@ -1,24 +1,23 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import { Outlet, useNavigate } from 'react-router';
+import { useSelector } from 'react-redux';
+import { Navigate, Outlet } from 'react-router';
 
 const ProtectedRoute = () => {
 
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.auth);
+  const { user, isLoading } = useSelector((state) => state.auth);
 
   // ==========================================
   // create Protected route useing navigate
   // ===========================================
 
-  useEffect(() => {
-    if (user) {
-      navigate("/home")
-    } else {
-      navigate("/")
-    }
-  }, [user], [dispatch])
+  if (isLoading) {
+    return (
+      <div className='min-h-screen bg-[#1A2546]' >...Loading user</div>
+    )
+  }
+
+  if (!user) {
+    return <Navigate to="/" replace />
+  }
 
   return <Outlet />
 }
