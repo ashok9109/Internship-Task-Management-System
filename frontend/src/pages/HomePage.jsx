@@ -1,4 +1,4 @@
-import svg from '../images/OnlineTest.Svg'
+import svg from '../images/OnlineTest.svg'
 import PublicNavBar from '../components/Navigation/PublicNavBar';
 import courses1 from "../images/courses-image-1.png";
 import courses2 from "../images/courses-image-2.png";
