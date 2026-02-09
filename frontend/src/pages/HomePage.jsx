@@ -14,10 +14,10 @@ const HomePage = () => {
       <PublicNavBar />
 
       {/* hero section */}
-      <section className='w-full flex flex-col justify-evenly md:flex-row text-white p-3 gap-5' >
-        <div className="w-full w-full md:max-w-xl font1 p-3 bg-slate-900/50 border-2 border-sky-500 shadow-lg shadow-sky-500 rounded p-5" >
-          <h1>Unlock Your Full Potential with <span className='text-sky-500 font4' >Upstare Research</span></h1>
-          <p className='mt-5' > Expert-led courses designed to help you excel in your career by providing in-depth knowledge, hands-on training,
+      <section className='w-full flex flex-col justify-evenly md:flex-row text-white p-10 gap-5' >
+        <div className="w-full w-full md:max-w-xl font1 p-1" >
+          <h1 className='text-5xl text-center text-sky-500 text-shadow-lg text-shadow-black' >Upstare Research</h1>
+          <p className='mt-5 font-bold border-2 border-sky-500 bg-slate-900/50 shadow-lg shadow-sky-500 rounded-lg p-7' > Expert-led courses designed to help you excel in your career by providing in-depth knowledge, hands-on training,
             and real-world projects. Learn from industry professionals, build job-ready skills, and gain the confidence to
             achieve your dreams. Whether you're starting fresh or upskilling, our courses offer personalized guidance and
             career-focused learning to set you up for long-term success.</p>
@@ -31,7 +31,7 @@ const HomePage = () => {
 
       {/* our Courses */}
       <section className='w-full p-5' >
-        <h1 className='text-center font4 text-2xl text-white p-5' >Explore Our Courses</h1>
+        <h1 className='text-center font4 text-3xl text-white p-5' >Explore Our Courses</h1>
 
         {/* Courses */}
         <div className='w-full flex flex-col items-center justify-evenly md:flex-row gap-10' >

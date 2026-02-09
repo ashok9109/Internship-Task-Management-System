@@ -8,7 +8,9 @@ const PublicNavBar = () => {
             <nav className="w-full flex items-center justify-between p-7" >
 
                 {/* company image */}
+                <div className="shadow-lg shadow-sky-500" >
                 <img className='h-[40px] md:h-[60px]' src={logo} alt="company logo" />
+                </div>
 
                 {/* Nav links */}
                 <div className="flex text-white hidden md:flex md:gap-20" >

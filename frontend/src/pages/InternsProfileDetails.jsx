@@ -61,7 +61,7 @@ const InternsProfileDetails = () => {
     setApprovalLoading(true);
     console.log("this is task id", taskId, status)
     try {
-      const response = await axiosintance.patch("/api/admin/dashboard/task/approval", {taskId, status});
+      const response = await axiosintance.patch("/api/admin/dashboard/task/approval", { taskId, status });
       if (response) {
         console.log("Approved")
       }
@@ -79,8 +79,8 @@ const InternsProfileDetails = () => {
   const rejectedHandleSubmit = async (taskId, status) => {
     setRejectLoading(true);
     try {
-      const response = await axiosintance.patch("/api/admin/dashboard/task/approval", {taskId, status});
-      if(response){
+      const response = await axiosintance.patch("/api/admin/dashboard/task/approval", { taskId, status });
+      if (response) {
         console.log("Rejected");
       }
 
@@ -101,11 +101,11 @@ const InternsProfileDetails = () => {
     )
   }
 
-  if (!internAllTasks) {
-    return (
-      <div className='min-h-screen  bg-[#1A2546]' >.....Loading intern tasks</div>
-    )
-  }
+  // if (!internAllTasks) {
+  //   return (
+  //     <div className='min-h-screen  bg-[#1A2546]' >.....Loading intern tasks</div>
+  //   )
+  // }
 
   return (
     <section className='min-h-screen md:min-h-full w-full bg-[#1A2546] text-white p-4' >

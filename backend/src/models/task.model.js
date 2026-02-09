@@ -10,7 +10,7 @@ const taskSchema = new mongoose.Schema({
 
     handOnPractice: { type: String },
 
-    projectTitle: { type: String },
+    projectTitle: { type: String }, 
 
     technicalRequirements: { type: String },
 
