@@ -4,6 +4,7 @@ import courses1 from "../images/courses-image-1.png";
 import courses2 from "../images/courses-image-2.png";
 import courses3 from "../images/courses-image-3.png";
 import courses4 from "../images/courses-image-4.png";
+import Footer from '../components/Footer';
 
 
 const HomePage = () => {
@@ -30,7 +31,7 @@ const HomePage = () => {
       </section>
 
       {/* our Courses */}
-      <section className='w-full p-5' >
+      <section className='w-full p-5' id='courses' >
         <h1 className='text-center font4 text-3xl text-white p-5' >Explore Our Courses</h1>
 
         {/* Courses */}
@@ -77,6 +78,9 @@ const HomePage = () => {
           </div>
         </div>
       </section>
+
+    {/* Footer */}
+    <Footer/>
     </section>
   )
 }

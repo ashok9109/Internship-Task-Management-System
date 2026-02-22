@@ -14,8 +14,8 @@ const PublicNavBar = () => {
 
                 {/* Nav links */}
                 <div className="flex text-white hidden md:flex md:gap-20" >
-                    <Link to="/" className="bg-black px-7 py-2 rounded shadow-lg shadow-sky-500 " >Home</Link>
-                    <Link to="/" className="bg-black px-7 py-2 rounded shadow-lg shadow-sky-500 " >Courses</Link>
+                    <a className="bg-black px-7 py-2 rounded shadow-lg shadow-sky-500 " href="#courses">Courses</a>
+                    <a className="bg-black px-7 py-2 rounded shadow-lg shadow-sky-500 " href="#contact">Contact</a>
                     <Link to="/login" className="bg-black px-7 py-2 rounded shadow-lg shadow-sky-500 " >login</Link>
                     <Link to="/register" className="bg-black px-7 py-2 rounded shadow-lg shadow-sky-500 " >Sign up</Link>
                 </div>

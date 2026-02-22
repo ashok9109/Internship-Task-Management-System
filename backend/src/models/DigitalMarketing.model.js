@@ -1,32 +1,32 @@
-// const mongoose = require("mongoose");
+const mongoose = require("mongoose");
 
 
-// const digitalMarketingSchema = new mongoose.Schema({
+const digitalMarketingSchema = new mongoose.Schema({
 
-//     title: { type: String, },
+    title: { type: String, },
 
-//     taskNumber: { type: String, unique: true },
+    taskNumber: { type: String, unique: true },
 
-//     theoryConcepts: { type: String },
+    theoryConcepts: { type: String },
 
-//     handOnPractice: { type: String },
+    handOnPractice: { type: String },
 
-//     projectTitle: { type: String },
+    projectTitle: { type: String },
 
-//     technicalRequirements: { type: String },
+    technicalRequirements: { type: String },
 
-//     stepByStep: { type: String },
+    stepByStep: { type: String },
 
-//     sampleOutput: { type: String, default: "" },
+    sampleOutput: { type: String, default: "" },
 
-//     submissions: { type: String },
+    submissions: { type: String },
 
-//     tipResources: { type: String },
+    tipResources: { type: String },
 
-//     domain: { type: String, required: true, enum:["webDevelopments", "digitalMarketings", "uiuxDesigns", "dataAnalytics"]}
+    domain: { type: String, required: true, enum:["webDevelopments", "digitalMarketings", "uiuxDesigns", "dataAnalytics"]}
 
-// }, { timestamps: true });
+}, { timestamps: true });
 
-// const digitalMarkingModel = mongoose.model("Digital-Marketing-Task", digitalMarketingSchema);
+const digitalMarkingModel = mongoose.model("Digital-Marketing-Tasks", digitalMarketingSchema);
 
-// module.exports = digitalMarkingModel;
+module.exports = digitalMarkingModel;

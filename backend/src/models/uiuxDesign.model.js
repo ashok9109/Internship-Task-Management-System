@@ -1,34 +1,34 @@
-// const mongoose = require("mongoose");
+const mongoose = require("mongoose");
 
-// const uiuxDesignSchema = new mongoose.Schema({
+const uiuxDesignSchema = new mongoose.Schema({
 
-//      title: { type: String, },
+     title: { type: String, },
 
-//     taskNumber: { type: String, unique: true },
+    taskNumber: { type: String, unique: true },
 
-//     theoryConcepts: { type: String },
+    theoryConcepts: { type: String },
 
-//     handOnPractice: { type: String },
+    handOnPractice: { type: String },
 
-//     projectTitle: { type: String }, 
+    projectTitle: { type: String }, 
 
-//     technicalRequirements: { type: String },
+    technicalRequirements: { type: String },
 
-//     stepByStep: { type: String },
+    stepByStep: { type: String },
 
-//     sampleOutput: { type: String, default: "" },
+    sampleOutput: { type: String, default: "" },
 
-//     submissions: { type: String },
+    submissions: { type: String },
 
-//     tipResources: { type: String },
+    tipResources: { type: String },
 
-//     domain: { type: String, required: true, enum:["webDevelopments", "digitalMarketings", "uiuxDesigns", "dataAnalytics"]}
-
-
-
-// }, {timestamps:true})
+    domain: { type: String, required: true, enum:["webDevelopments", "digitalMarketings", "uiuxDesigns", "dataAnalytics"]}
 
 
-// const uiuxDesignModel = mongoose.model("UI-UX-Design-Tasks", uiuxDesignSchema);
 
-// module.exports = uiuxDesignModel;
+}, {timestamps:true})
+
+
+const uiuxDesignModel = mongoose.model("UI-UX-Design-Tasks", uiuxDesignSchema);
+
+module.exports = uiuxDesignModel;
