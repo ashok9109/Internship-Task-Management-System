@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import logo from '../../images/hd-logo.png'
+import logo from '../../images/as-logo.png'
 import { userLoginApi } from '../../features/actions/authActions';
 import { useState } from 'react';
 
