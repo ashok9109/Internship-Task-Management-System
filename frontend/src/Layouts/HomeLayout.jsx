@@ -12,7 +12,7 @@ const HomeLayout = () => {
 
         {/* This is mobile menu */}
         <header className='flex items-center justify-evenly gap-10 px-2 bg-slate-900 py-2 md:hidden ' >
-          <div className='font-bold text-sky-500 text-xl' >UPSTARE</div>
+          <div className='font-bold text-sky-500 text-xl' >Ashok</div>
           <button onClick={() => setOpenMenu((perv) => !perv)} >
             <span className='block h-[2px] w-5 mb-1 bg-white' ></span>
             <span className='block h-[2px] w-5 mb-1 bg-white' ></span>

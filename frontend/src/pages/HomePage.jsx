@@ -4,7 +4,7 @@ import courses1 from "../images/courses-image-1.png";
 import courses2 from "../images/courses-image-2.png";
 import courses3 from "../images/courses-image-3.png";
 import courses4 from "../images/courses-image-4.png";
-// import logo from "../images/as-logo.png"
+import logo from "../images/as-logo.png"
 import Footer from '../components/Footer';
 
 
@@ -19,9 +19,9 @@ const HomePage = () => {
       <section className='w-full flex flex-col justify-evenly md:flex-row text-white p-10 gap-5' >
         <div className="w-full w-full md:max-w-xl font1 p-1">
           <div className='flex items-center justify-center ' >
-            {/* <img className='h-[40px] md:h-[60px]' src={logo} alt="company logo" />
+            <img className='h-[40px] md:h-[60px]' src={logo} alt="company logo" />
             <h1 className='text-5xl text-center text-sky-500 text-shadow-lg text-shadow-black' >Ashok Yadav</h1>
-            <img className='h-[40px] md:h-[60px]' src={logo} alt="company logo" /> */}
+            <img className='h-[40px] md:h-[60px]' src={logo} alt="company logo" />
           </div>
           <p className='mt-5 font-bold border-2 border-sky-500 bg-slate-900/50 shadow-lg shadow-sky-500 rounded-lg p-7' > Expert-led courses designed to help you excel in your career by providing in-depth knowledge, hands-on training,
             and real-world projects. Learn from industry professionals, build job-ready skills, and gain the confidence to

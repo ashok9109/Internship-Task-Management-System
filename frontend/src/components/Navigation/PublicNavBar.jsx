@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import logo from "../../images/as-logo.png"
+import logo from "../../images/logo.png"
 
 const PublicNavBar = () => {
     return (
@@ -8,7 +8,7 @@ const PublicNavBar = () => {
             <nav className="w-full flex items-center justify-between p-7" >
 
                 {/* company image */}
-                <div className="" >
+                <div className="shadow-lg shadow-sky-500" >
                 <img className='h-[40px] md:h-[80px]' src={logo} alt="company logo" />
                 </div>
 
