@@ -1,4 +1,4 @@
-# Upstare Research (Intern Task Management System)
+# Internship Task Management System
 
 ## 📌 Project Overview
 The **Intern Task Management System** is a web-based application designed to efficiently manage interns and their assigned tasks. The system helps organizations assign tasks, track progress, and monitor intern performance in a structured and transparent way.
